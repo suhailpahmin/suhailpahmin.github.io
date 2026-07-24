@@ -1,112 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Bloom</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: #f5f5f5;
-        }
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 { color: #2c3e50; }
-        h2 { color: #34495e; margin-top: 30px; }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #007bff;
-            text-decoration: none;
-        }
-        .back-link:hover { text-decoration: underline; }
-        .highlight { background: #fff3cd; padding: 10px; border-radius: 5px; margin: 20px 0; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy · Bloom</title>
+<meta name="description" content="Bloom's privacy policy: on-device by default, private iCloud sync, no analytics, no account, no ads.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌱%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --brand: #438C83;
+    --brand-tint: #438C831F;
+    --ink: #0F0F10;
+    --ink-mute: #727275;
+    --surface: #F4F4F4;
+    --bg: #FCFCFC;
+    --divider: #E8E8E8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
+  body {
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 40px 24px 96px; }
+  .back { display: inline-block; color: var(--brand); font-weight: 600; text-decoration: none; margin-bottom: 24px; font-size: 14px; }
+  .back:hover { text-decoration: underline; text-underline-offset: 3px; }
+  h1 {
+    font: 700 32px/1.2 -apple-system-rounded, ui-rounded, "SF Pro Rounded", "SF Pro", system-ui, sans-serif;
+    letter-spacing: -0.5px; margin: 0 0 6px;
+  }
+  .updated { color: var(--ink-mute); font-size: 14px; margin: 0 0 32px; }
+  h2 {
+    font: 600 20px/1.3 -apple-system-rounded, ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+    margin: 36px 0 10px; letter-spacing: -0.2px;
+  }
+  p, li { color: var(--ink); }
+  p.muted { color: var(--ink-mute); }
+  ul { padding-left: 20px; }
+  ul li { margin: 6px 0; }
+  a { color: var(--brand); }
+  .callout {
+    padding: 16px 20px; background: var(--brand-tint); border-radius: 12px;
+    margin: 12px 0 20px; color: var(--ink);
+  }
+  .callout strong { color: var(--brand); }
+  footer {
+    margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--divider);
+    color: var(--ink-mute); font-size: 13px; text-align: center;
+  }
+  footer a { color: var(--ink-mute); text-decoration: underline; text-underline-offset: 3px; }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --brand: #6BB0A5;
+      --brand-tint: rgba(107, 176, 165, 0.16);
+      --ink: #F5F6F7;
+      --ink-mute: #9AA0A6;
+      --surface: #1A1D1F;
+      --bg: #0F1112;
+      --divider: #2A2D2F;
+    }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to Legal Documents</a>
-        
-        <h1>Privacy Policy</h1>
-        
-        <p><strong>Effective Date:</strong> July 2025</p>
-        
-        <div class="highlight">
-            <strong>Important:</strong> Bloom is designed with privacy in mind. Your financial data stays on your device and is only synced through your personal iCloud account.
-        </div>
-        
-        <h2>1. Information We Collect</h2>
-        <p>Bloom operates with a privacy-first approach:</p>
-        <ul>
-            <li><strong>Local Data:</strong> All your financial transactions, budgets, and categories are stored locally on your device</li>
-            <li><strong>iCloud Sync:</strong> If enabled, your data is synced through Apple's iCloud service using your personal iCloud account</li>
-            <li><strong>Analytics:</strong> We may collect anonymized usage analytics through Firebase to improve the app experience</li>
-            <li><strong>No Account Required:</strong> Bloom does not require you to create an account or provide personal information</li>
-        </ul>
-        
-        <h2>2. How We Use Your Information</h2>
-        <ul>
-            <li>To provide core expense tracking functionality</li>
-            <li>To sync your data across your devices via iCloud (when enabled)</li>
-            <li>To improve app performance and user experience through analytics</li>
-            <li>To provide customer support when requested</li>
-        </ul>
-        
-        <h2>3. Data Storage and Security</h2>
-        <ul>
-            <li><strong>Local Storage:</strong> Your data is stored securely on your device using encrypted SQLite database</li>
-            <li><strong>iCloud Sync:</strong> When enabled, data is encrypted and stored in your personal iCloud account</li>
-            <li><strong>No Third-Party Servers:</strong> We do not store your financial data on our servers</li>
-            <li><strong>Biometric Security:</strong> Optional Face ID/Touch ID protection for app access</li>
-        </ul>
-        
-        <h2>4. Data Sharing</h2>
-        <p>We do not sell, trade, or share your personal financial data with third parties. The only data sharing that occurs is:</p>
-        <ul>
-            <li>Syncing to your personal iCloud account (when you enable this feature)</li>
-            <li>Anonymized analytics data to Firebase for app improvement</li>
-        </ul>
-        
-        <h2>5. Your Rights</h2>
-        <ul>
-            <li><strong>Data Control:</strong> You have full control over your data and can delete it at any time</li>
-            <li><strong>Export:</strong> You can export your data in CSV or PDF format</li>
-            <li><strong>Opt-out:</strong> You can disable iCloud sync and analytics at any time in settings</li>
-        </ul>
-        
-        <h2>6. Third-Party Services</h2>
-        <p>Bloom uses the following third-party services:</p>
-        <ul>
-            <li><strong>Firebase Analytics:</strong> For anonymized usage analytics</li>
-            <li><strong>Firebase Cloud Messaging:</strong> For push notifications</li>
-            <li><strong>Apple iCloud:</strong> For optional data synchronization</li>
-            <li><strong>Google AdMob:</strong> For displaying ads in the free version</li>
-            <li><strong>RevenueCat:</strong> For subscription management and premium features</li>
-        </ul>
-        
-        <h2>7. Children's Privacy</h2>
-        <p>Bloom is not intended for children under 13. We do not knowingly collect personal information from children under 13.</p>
-        
-        <h2>8. Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Effective Date."</p>
-        
-        <h2>9. Contact Us</h2>
-        <p>If you have any questions about this Privacy Policy, please contact us at:</p>
-        <p><strong>Email:</strong>suhailqamil+bloom@protonmail.com</p>
-        
-        <hr style="margin: 40px 0;">
-        <p style="text-align: center; color: #6c757d; font-size: 14px;">
-            Last updated: July 2025
-        </p>
-    </div>
+<div class="wrap">
+  <a class="back" href="index.html">‹ Back to support</a>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: 24 July 2026</p>
+
+  <div class="callout">
+    <strong>The short version.</strong> Bloom runs on your iPhone and syncs to your own private iCloud. There is no Bloom server. We have no account system, no analytics, no ads, and no tracking. Your financial data is never sent to us — because there is no "us" to send it to.
+  </div>
+
+  <h2>1. What data Bloom handles</h2>
+  <p>Bloom is a personal-finance tracker. To do its job, it lets you record and organize:</p>
+  <ul>
+    <li>Transactions you type, scan from receipts, or import from CSV.</li>
+    <li>Categories, accounts, credit cards, loans, installments, bills, budgets, and savings goals you set up.</li>
+    <li>Receipt images you capture, stored file-protected on your device.</li>
+    <li>Rate values you enter or accept for foreign-currency conversion.</li>
+  </ul>
+  <p>All of this stays on your device.</p>
+
+  <h2>2. Where your data lives</h2>
+  <p>Two possible locations, both under your control:</p>
+  <ul>
+    <li><strong>On your iPhone.</strong> The primary store. Local database, file-system protected. Nothing leaves the device by default.</li>
+    <li><strong>Your private iCloud (optional).</strong> When iOS iCloud is signed in, Bloom uses Apple CloudKit's <em>private database</em> to sync between your devices. Apple hosts this; only you can read it. Bloom the app has no access to Apple's servers or your iCloud contents.</li>
+  </ul>
+
+  <h2>3. What we do <em>not</em> collect</h2>
+  <ul>
+    <li>No account, sign-up, or email is required to use Bloom.</li>
+    <li>No analytics, telemetry, or crash reporting sent to us or any third party.</li>
+    <li>No advertising SDKs, tracking pixels, or third-party trackers.</li>
+    <li>No location, contacts, calendar, photos (beyond the receipt image you explicitly capture), or health data.</li>
+    <li>No device identifiers used for cross-app tracking.</li>
+  </ul>
+
+  <h2>4. Apple Pay and FinanceKit</h2>
+  <p>Bloom can optionally read your Apple Card, Apple Cash, and Apple Savings activity via Apple's <strong>FinanceKit</strong> framework (iOS 17.4+). This runs entirely on your device — Bloom asks iOS for the data and iOS returns it locally. No third party is involved. You can turn this off any time in iOS Settings → Bloom → Financial Data.</p>
+  <p>For other cards, Bloom shows you a walkthrough for an iOS <strong>Shortcuts automation</strong>. The automation you build lives in your Shortcuts app under your control. When you make a purchase, iOS runs the shortcut on-device and passes the transaction data to Bloom. Nothing goes through Bloom's servers (there are none).</p>
+
+  <h2>5. Camera and receipt scanning</h2>
+  <p>The camera is used only when you tap the scan icon to capture a receipt. The image and the extracted text are stored locally with iOS file-protection. Nothing is uploaded.</p>
+
+  <h2>6. Notifications</h2>
+  <p>Bloom schedules local notifications for credit-card statement dates, payment due dates, and bill reminders. These are generated on your device by iOS. Bloom does not use push notifications, and no server sends anything to you.</p>
+
+  <h2>7. Face ID / Passcode</h2>
+  <p>If you enable App Lock, Bloom asks iOS to authenticate you via Face ID, Touch ID, or your device passcode. iOS handles the check. Bloom never sees your biometric or passcode data — only a yes/no result.</p>
+
+  <h2>8. Your controls</h2>
+  <ul>
+    <li><strong>Export your data.</strong> Settings → Data → Export all data. Bloom writes a CSV you can save or share.</li>
+    <li><strong>Delete your data.</strong> Settings → Data → Erase all data. Removes every transaction, receipt, and setting from your device. iCloud copies (if any) can be removed by turning off iCloud sync for Bloom in iOS Settings, or by using the "Manage Storage" controls in iCloud.</li>
+    <li><strong>Uninstall.</strong> Deleting the app removes the local store. Any iCloud copy remains under your control in iCloud until you remove it.</li>
+  </ul>
+
+  <h2>9. Children's privacy</h2>
+  <p>Bloom is not directed at children under 13 and does not knowingly collect any information from them.</p>
+
+  <h2>10. Changes to this policy</h2>
+  <p>If we materially change how Bloom handles data, we'll update this page and the "Last updated" date above. Because Bloom doesn't have your contact information, we can't notify you individually — check back here or in the app's Settings if you're concerned.</p>
+
+  <h2>11. Contact</h2>
+  <p>Questions about privacy: <a href="mailto:suhailqamil@gmail.com">suhailqamil@gmail.com</a>.</p>
+
+  <footer>
+    © 2026 Bloom · <a href="index.html">Support</a> · <a href="terms.html">Terms</a>
+  </footer>
+</div>
 </body>
 </html>
