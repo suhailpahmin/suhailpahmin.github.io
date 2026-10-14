@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy · Bloom</title>
-<meta name="description" content="Bloom's privacy policy: on-device by default, private iCloud sync, no analytics, no account, no ads.">
+<meta name="description" content="Bloom's privacy policy: on-device by default, private iCloud sync, no financial data ever leaves your phone, opt-out crash reports and anonymous usage stats.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌱%3C/text%3E%3C/svg%3E">
 <style>
   :root {
@@ -66,21 +66,21 @@
 <div class="wrap">
   <a class="back" href="index.html">‹ Back to support</a>
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: 28 July 2026</p>
+  <p class="updated">Last updated: 14 October 2026</p>
 
   <div class="callout">
-    <strong>The short version.</strong> Bloom runs on your iPhone and syncs to your own private iCloud. There is no Bloom server. We have no account system, no analytics, no ads, and no tracking. Your financial data is never sent to us — because there is no "us" to send it to.
+    <strong>The short version.</strong> Bloom runs on your iPhone and syncs to your own private iCloud. Your financial data (transactions, balances, cards, receipts) never leaves your phone. Bloom does send anonymous crash reports and basic usage counts to help us fix bugs and understand what to build next — you can turn this off in Settings → Privacy at any time.
   </div>
 
   <h2>1. What data Bloom handles</h2>
   <p>Bloom is a personal-finance tracker. To do its job, it lets you record and organize:</p>
   <ul>
-    <li>Transactions you type, scan from receipts, or import from CSV.</li>
+    <li>Transactions you type, scan from receipts, speak via voice input, or import from CSV.</li>
     <li>Categories, accounts, credit cards, loans, installments, bills, budgets, and savings goals you set up.</li>
     <li>Receipt images you capture, stored file-protected on your device.</li>
     <li>Rate values you enter or accept for foreign-currency conversion.</li>
   </ul>
-  <p>All of this stays on your device.</p>
+  <p>All of this stays on your device. For credit cards, Bloom only stores what you type in: a nickname, network name, last four digits, your statement/due days, and limit — never a full card number or CVV.</p>
 
   <h2>2. Where your data lives</h2>
   <p>Two possible locations, both under your control:</p>
@@ -89,45 +89,64 @@
     <li><strong>Your private iCloud (optional).</strong> When iOS iCloud is signed in, Bloom uses Apple CloudKit's <em>private database</em> to sync between your devices. Apple hosts this; only you can read it. Bloom the app has no access to Apple's servers or your iCloud contents.</li>
   </ul>
 
-  <h2>3. What we do <em>not</em> collect</h2>
+  <h2>3. Crash reports and anonymous usage stats</h2>
+  <p>Bloom ships two small SDKs that help us keep the app stable and understand which features to invest in:</p>
+  <ul>
+    <li><strong>Sentry</strong> collects crash and app-hang reports: a stack trace, your iOS version, device model, and app version. Screenshots, view hierarchy, and PII are explicitly disabled. If you tap <em>Send feedback</em> in Settings, the message you type (and optional email) is sent through Sentry too.</li>
+    <li><strong>Aptabase</strong> collects anonymous usage counters so we can see things like "how many users completed onboarding" or "how many first transactions were voice-entered." Each event is a short name and at most a small, fixed set of non-identifying fields (e.g. a duration in seconds, a product ID, a count).</li>
+  </ul>
+  <p>Neither of these ever sees your transactions, balances, merchant names, account details, or receipt content. There is no identifier tying events to your person — only to an anonymous install.</p>
+  <p>Both default on. You can switch them off in <strong>Settings → Privacy → Help improve Bloom</strong>. When off, Sentry closes and Aptabase stops firing new events.</p>
+
+  <h2>4. What Bloom does <em>not</em> collect</h2>
   <ul>
     <li>No account, sign-up, or email is required to use Bloom.</li>
-    <li>No analytics, telemetry, or crash reporting sent to us or any third party.</li>
     <li>No advertising SDKs, tracking pixels, or third-party trackers.</li>
     <li>No location, contacts, calendar, photos (beyond the receipt image you explicitly capture), or health data.</li>
-    <li>No device identifiers used for cross-app tracking.</li>
+    <li>No device identifiers used for cross-app tracking (no IDFA, no fingerprinting).</li>
+    <li>No financial data — ever — in crash reports or analytics.</li>
   </ul>
 
-  <h2>4. Apple Pay and FinanceKit</h2>
+  <h2>5. Apple Pay and FinanceKit</h2>
   <p>Bloom can optionally read your Apple Card, Apple Cash, and Apple Savings activity via Apple's <strong>FinanceKit</strong> framework (iOS 17.4+). This runs entirely on your device — Bloom asks iOS for the data and iOS returns it locally. No third party is involved. You can turn this off any time in iOS Settings → Bloom → Financial Data.</p>
-  <p>For other cards, Bloom shows you a walkthrough for an iOS <strong>Shortcuts automation</strong>. The automation you build lives in your Shortcuts app under your control. When you make a purchase, iOS runs the shortcut on-device and passes the transaction data to Bloom. Nothing goes through Bloom's servers (there are none). You control FinanceKit access via iOS Settings → Privacy &amp; Security → Financial Data → Bloom.</p>
+  <p>For other cards, Bloom shows you a walkthrough for an iOS <strong>Shortcuts automation</strong>. The automation you build lives in your Shortcuts app under your control. When you make a purchase, iOS runs the shortcut on-device and passes the transaction data to Bloom. Nothing goes through Bloom's servers (there are none).</p>
 
-  <h2>5. Camera and receipt scanning</h2>
-  <p>The camera is used only when you tap the scan icon to capture a receipt. The image and the extracted text are stored locally with iOS file-protection. Nothing is uploaded.</p>
+  <h2>6. Apple Intelligence and on-device AI</h2>
+  <p>On iPhones that support Apple Intelligence (iOS 26+), Bloom uses Apple's on-device <strong>Foundation Models</strong> framework to improve a few features: smart category suggestions, natural-language transaction search, voice phrase parsing, receipt interpretation, and the Insights advisor summary. These calls run locally on your device; no prompt or response is sent to Apple's servers or to Bloom. On devices without Apple Intelligence, Bloom falls back to rule-based logic for the same features.</p>
 
-  <h2>6. Notifications</h2>
-  <p>Bloom schedules local notifications for credit-card statement dates, payment due dates, and bill reminders. These are generated on your device by iOS. Bloom does not use push notifications, and no server sends anything to you.</p>
+  <h2>7. Voice input</h2>
+  <p>When you tap the mic to log a transaction, Bloom uses Apple's <strong>Speech framework</strong> for speech-to-text. If your iOS Dictation setting is set to on-device only (iOS Settings → General → Keyboard → Enable Dictation → Dictation), everything stays on your phone. If Dictation is online, Apple may process audio on its servers under Apple's privacy terms. Bloom itself never records or stores the raw audio.</p>
 
-  <h2>7. Face ID / Passcode</h2>
+  <h2>8. Camera and receipt scanning</h2>
+  <p>The camera is used only when you tap the scan icon to capture a receipt. The image, OCR text (Apple's on-device Vision framework), and any AI-interpreted fields are stored locally with iOS file-protection. Nothing is uploaded.</p>
+
+  <h2>9. Notifications</h2>
+  <p>Bloom schedules local notifications for credit-card statement dates, payment due dates, bill reminders, and the optional weekly digest. These are generated on your device by iOS. Bloom does not use push notifications, and no server sends anything to you.</p>
+
+  <h2>10. Subscriptions and payments</h2>
+  <p>Bloom Pro is handled by Apple's <strong>StoreKit</strong>. Apple processes the payment; we never see your card details. Apple reports back to Bloom only whether your subscription is active, so premium features can unlock. Receipts, renewals, and refunds live in your Apple ID. Manage or cancel at iOS Settings → [your name] → Subscriptions.</p>
+
+  <h2>11. Face ID / Passcode</h2>
   <p>If you enable App Lock, Bloom asks iOS to authenticate you via Face ID, Touch ID, or your device passcode. iOS handles the check. Bloom never sees your biometric or passcode data — only a yes/no result.</p>
 
-  <h2>8. Widgets, Lock Screen, and Live Activities</h2>
+  <h2>12. Widgets, Lock Screen, and Live Activities</h2>
   <p>Home-screen and lock-screen widgets read a small snapshot Bloom writes to a shared iOS App Group on your device — spend this month, budget left, next bill, and top savings goal. The snapshot lives locally, is refreshed by the app, and never leaves your iPhone. Live Activities (if enabled) render the same locally-computed numbers on your Lock Screen and Dynamic Island.</p>
 
-  <h2>9. Your controls</h2>
+  <h2>13. Your controls</h2>
   <ul>
+    <li><strong>Turn off telemetry.</strong> Settings → Privacy → Help improve Bloom. Closes Sentry and stops Aptabase for the current and future sessions.</li>
     <li><strong>Export your data.</strong> Settings → Data → Export all data. Bloom writes a CSV you can save or share.</li>
     <li><strong>Delete your data.</strong> Settings → Data → Erase all data. Removes every transaction, receipt, and setting from your device. iCloud copies (if any) can be removed by turning off iCloud sync for Bloom in iOS Settings, or by using the "Manage Storage" controls in iCloud.</li>
     <li><strong>Uninstall.</strong> Deleting the app removes the local store. Any iCloud copy remains under your control in iCloud until you remove it.</li>
   </ul>
 
-  <h2>10. Children's privacy</h2>
+  <h2>14. Children's privacy</h2>
   <p>Bloom is not directed at children under 13 and does not knowingly collect any information from them.</p>
 
-  <h2>11. Changes to this policy</h2>
+  <h2>15. Changes to this policy</h2>
   <p>If we materially change how Bloom handles data, we'll update this page and the "Last updated" date above. Because Bloom doesn't have your contact information, we can't notify you individually — check back here or in the app's Settings if you're concerned.</p>
 
-  <h2>12. Contact</h2>
+  <h2>16. Contact</h2>
   <p>Questions about privacy: <a href="mailto:suhailqamil@gmail.com">suhailqamil@gmail.com</a>.</p>
 
   <footer>
