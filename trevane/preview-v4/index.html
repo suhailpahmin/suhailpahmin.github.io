@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trevane: Medication Reminders</title>
+<meta name="description" content="A calm medication reminder, with refill alerts before you run out and a simple way for someone you trust to check in. Unlimited medications, always free.">
+<link rel="icon" href="app-icon.png">
+<style>
+  :root {
+    --primary: #4A7C82;
+    --primary-dark: #35595E;
+    --primary-tint: #E4EEEF;
+    --accent: #3E7CB1;
+    --accent-dark: #2C5D87;
+    --accent-tint: #DCEAF4;
+    --ink: #2B3335;
+    --ink-mute: #68787B;
+    --surface: #FBFAF8;
+    --card: #FFFFFF;
+    --divider: #E7E2DB;
+    --bezel: #15181B;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--surface); color: var(--ink); overflow-x: hidden; }
+  body {
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; position: relative; }
+  a { color: var(--accent); }
+  section { position: relative; }
+
+  /* ===== Abstract background shapes (shape language borrowed from
+     the Dribbble "bold SaaS landing" genre @user referenced - soft
+     organic blobs for section separation - NOT their colors: these
+     stay inside Trevane's own teal/sky-blue tint tokens only, never
+     purple/indigo/pink. Pure CSS radial-gradients, no images. ===== */
+  .blob {
+    position: absolute; border-radius: 50%; filter: blur(60px);
+    opacity: 0.55; pointer-events: none; z-index: 0;
+  }
+  .blob-primary { background: var(--primary-tint); }
+  .blob-accent { background: var(--accent-tint); }
+
+  /* ===== Nav ===== */
+  nav { padding: 24px 0; position: relative; z-index: 2; }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; }
+  .brand img { width: 32px; height: 32px; border-radius: 9px; display: block; }
+  nav .cta-small {
+    display: inline-block; background: var(--primary); color: #fff; text-decoration: none;
+    font-weight: 700; font-size: 14px; padding: 10px 18px; border-radius: 12px;
+  }
+
+  /* ===== Hero: two-column, bold headline left, tilted multi-phone
+     composition right (Boss/@user, Nov 2026 - "bold two-column hero
+     ... tilted/angled multi-phone composition ... not a single flat
+     centered phone", structural DNA from the Chrono/ChronoTek-style
+     reference). ===== */
+  .hero { padding: 40px 0 72px; position: relative; z-index: 1; }
+  .hero .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .hero-copy h1 {
+    font-family: -apple-system-rounded, ui-rounded, "SF Pro Rounded", "SF Pro", system-ui, sans-serif;
+    font-size: 48px; font-weight: 800; letter-spacing: -0.6px; margin: 0 0 18px; color: var(--ink); line-height: 1.08;
+  }
+  .hero-copy p.sub {
+    font-size: 18px; color: var(--ink-mute); max-width: 440px; margin: 0 0 28px;
+  }
+  .cta {
+    display: inline-block; background: var(--primary); color: #fff; text-decoration: none;
+    font-weight: 700; font-size: 16px; padding: 16px 30px; border-radius: 16px;
+    box-shadow: 0 10px 24px -8px rgba(74, 124, 130, 0.45);
+  }
+
+  /* Tilted phone stack */
+  .phone-stack { position: relative; height: 520px; perspective: 1600px; }
+  .phone-mock {
+    position: absolute;
+    border-radius: 40px;
+    background: linear-gradient(160deg, #26292d, var(--bezel) 55%);
+    padding: 10px;
+    box-shadow: 0 30px 60px -20px rgba(43, 51, 53, 0.4), 0 0 0 1px rgba(255,255,255,0.06) inset;
+  }
+  .phone-mock .screen {
+    width: 100%; height: 100%; overflow: hidden; background: #fff;
+    /* Radius measured against the actual screenshot content, not
+       guessed - see docs/landing-page/multi-phone-hero-2026-11/
+       MEASUREMENT.md. All 4 real screenshots used on this page tested
+       zero-clipping up to >=120px image-space; 8px CSS clears every
+       breakpoint/phone-size on this page with large margin
+       (worst case here: 8px / 0.20 scale ~= 40px image-space, well
+       under the 120px-safe threshold). */
+    clip-path: inset(0 round 8px);
+  }
+  .phone-mock .screen img {
+    width: 100%; height: 100%; object-fit: cover; object-position: top; display: block;
+    clip-path: inset(0 round 8px);
+  }
+  .phone-back {
+    width: 220px; aspect-ratio: 1206/2622;
+    right: 40px; top: 10px;
+    transform: rotate(8deg);
+    opacity: 0.92;
+  }
+  .phone-front {
+    width: 240px; aspect-ratio: 1206/2622;
+    left: 20px; top: 70px;
+    transform: rotate(-6deg);
+    z-index: 2;
+  }
+  /* Floating UI-echo cards (Boss/@user: "floating card elements
+     layered on top like Communicator's office-card overlays") - copy
+     here is lifted directly from the real in-app toast/chip strings
+     (TodayView's undoToastView "Marked taken", the low-stock chip
+     copy) rather than invented metrics, so this stays honest while
+     still reading as a confident, populated composition. */
+  .float-card {
+    position: absolute; z-index: 3; background: var(--card); border-radius: 16px;
+    box-shadow: 0 16px 32px -12px rgba(43,51,53,0.25); padding: 12px 16px;
+    display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 14px;
+  }
+  .float-card .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--primary); flex: none; }
+  .float-card.taken { left: 0; bottom: 60px; }
+  .float-card.taken .dot { background: var(--primary); }
+  .float-card.refill { right: 0; top: 20px; }
+  .float-card.refill .dot { background: var(--accent); }
+
+  /* ===== Stats / honest-highlight row (Boss/@user: "icon cards ...
+     must use real, true statements, not fabricated numbers" - no
+     download counts, no user counts, since Trevane hasn't launched). ===== */
+  .stats { padding: 0 0 72px; position: relative; z-index: 1; }
+  .stats .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .stat-card {
+    background: var(--card); border: 1px solid var(--divider); border-radius: 20px;
+    padding: 28px 24px; text-align: left;
+  }
+  .stat-card .icon {
+    width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font-size: 20px; margin-bottom: 16px;
+  }
+  .stat-card:nth-child(1) .icon { background: var(--primary-tint); color: var(--primary-dark); }
+  .stat-card:nth-child(2) .icon { background: var(--accent-tint); color: var(--accent-dark); }
+  .stat-card:nth-child(3) .icon { background: var(--primary-tint); color: var(--primary-dark); }
+  .stat-card h3 { font-size: 18px; margin: 0 0 6px; color: var(--ink); }
+  .stat-card p { font-size: 14px; color: var(--ink-mute); margin: 0; }
+
+  /* ===== Alternating feature sections (Boss/@user: "icon + bold
+     heading + body + phone mockup, left/right alternating ... if
+     there's enough real content to fill them honestly" - 2 real
+     features, both already shipped, no padding). ===== */
+  .feature { padding: 56px 0; position: relative; z-index: 1; }
+  .feature .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .feature.reverse .wrap { direction: rtl; }
+  .feature.reverse .wrap > * { direction: ltr; }
+  .feature-copy .icon {
+    width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 18px; background: var(--primary-tint); color: var(--primary-dark);
+  }
+  .feature.reverse .feature-copy .icon { background: var(--accent-tint); color: var(--accent-dark); }
+  .feature-copy h2 { font-size: 28px; margin: 0 0 12px; letter-spacing: -0.3px; }
+  .feature-copy p { font-size: 16px; color: var(--ink-mute); max-width: 420px; margin: 0; }
+  .feature-phone { display: flex; justify-content: center; }
+  .feature-phone .phone-mock {
+    position: static; width: 230px; aspect-ratio: 1206/2622; transform: none; box-shadow: 0 24px 48px -16px rgba(43,51,53,0.3);
+  }
+
+  /* ===== Reassurance row (kept from the one-fold version - still
+     true, still relevant, now living below the feature sections
+     rather than being the whole page). ===== */
+  .reassurance-section { padding: 16px 0 72px; position: relative; z-index: 1; }
+  .reassurance { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .reassurance li {
+    font-size: 14px; color: var(--ink); font-weight: 600;
+    background: var(--card); border: 1px solid var(--divider); border-radius: 14px;
+    padding: 12px 18px;
+  }
+
+  .final-cta { text-align: center; padding: 16px 0 64px; position: relative; z-index: 1; }
+
+  footer { border-top: 1px solid var(--divider); padding: 28px 0 40px; text-align: center; position: relative; z-index: 1; background: var(--surface); }
+  footer p { color: var(--ink-mute); font-size: 13px; margin: 0 0 10px; }
+  footer .links a { margin-right: 16px; font-weight: 600; font-size: 13px; text-decoration: none; }
+  footer .disclaimer { max-width: 520px; margin: 0 auto; line-height: 1.5; }
+
+  /* ===== Responsive: these references are desktop-first, Trevane's
+     page needs real phone breakpoints too (Boss/@user, explicit
+     requirement). Collapses to single-column everywhere a 2-col grid
+     exists; phone-stack shrinks and recenters rather than overflowing. ===== */
+  @media (max-width: 860px) {
+    .hero .wrap { grid-template-columns: 1fr; gap: 48px; }
+    .hero-copy { text-align: center; }
+    .hero-copy p.sub { margin-left: auto; margin-right: auto; }
+    .hero-copy h1 { font-size: 36px; }
+    .phone-stack { height: 420px; }
+    .phone-back { width: 170px; right: 50%; margin-right: -170px; top: 0; }
+    .phone-front { width: 190px; left: 50%; margin-left: -20px; top: 60px; }
+    .float-card.refill { right: 50%; margin-right: -220px; top: 0; }
+    .float-card.taken { left: 50%; margin-left: -230px; bottom: 30px; }
+
+    .stats .grid { grid-template-columns: 1fr; }
+
+    .feature .wrap, .feature.reverse .wrap { grid-template-columns: 1fr; direction: ltr; text-align: center; }
+    .feature-copy .icon { margin-left: auto; margin-right: auto; }
+    .feature-copy p { margin-left: auto; margin-right: auto; }
+  }
+  @media (max-width: 500px) {
+    .hero { padding: 24px 0 56px; }
+    .hero-copy h1 { font-size: 30px; }
+    .phone-stack { height: 360px; }
+    .phone-back { width: 140px; margin-right: -150px; }
+    .phone-front { width: 160px; margin-left: -10px; top: 50px; }
+    .float-card { padding: 9px 12px; font-size: 12px; }
+    .float-card.refill { margin-right: -190px; }
+    .float-card.taken { margin-left: -190px; }
+    .stat-card { padding: 22px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="blob blob-primary" style="width:520px; height:520px; top:-120px; right:-160px;"></div>
+<div class="blob blob-accent" style="width:420px; height:420px; top:620px; left:-180px;"></div>
+<div class="blob blob-primary" style="width:460px; height:460px; top:1500px; right:-200px;"></div>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><img src="app-icon.png" alt="Trevane app icon">Trevane</div>
+    <a class="cta-small" href="support.html">Coming soon</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1>Never lose track of a dose again.</h1>
+      <p class="sub">A calm medication reminder, with refill alerts before you run out and a simple way for someone you trust to check in.</p>
+      <a class="cta" href="support.html">Coming soon to the App Store</a>
+    </div>
+    <div class="phone-stack">
+      <div class="phone-mock phone-back">
+        <div class="screen"><img src="hero-sharedcare.png" alt="Trevane Shared Care view"></div>
+      </div>
+      <div class="phone-mock phone-front">
+        <div class="screen"><img src="hero-home.png" alt="Trevane app showing today's medication schedule"></div>
+      </div>
+      <div class="float-card taken"><span class="dot"></span>Marked taken</div>
+      <div class="float-card refill"><span class="dot"></span>Running low: Metformin</div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="grid">
+      <div class="stat-card">
+        <div class="icon">&#8734;</div>
+        <h3>Unlimited medications</h3>
+        <p>No limit on how many you track. Always free.</p>
+      </div>
+      <div class="stat-card">
+        <div class="icon">&#128683;</div>
+        <h3>No ads, ever</h3>
+        <p>Your medication list is never sold or shown to advertisers.</p>
+      </div>
+      <div class="stat-card">
+        <div class="icon">&#128241;</div>
+        <h3>Built for iPhone and iPad</h3>
+        <p>Native SwiftUI, with Dynamic Type and VoiceOver support throughout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feature">
+  <div class="wrap">
+    <div class="feature-copy">
+      <div class="icon">&#9888;</div>
+      <h2>Never run out.</h2>
+      <p>Trevane watches your supply and tells you a refill is coming before the bottle's actually empty - not the morning after.</p>
+    </div>
+    <div class="feature-phone">
+      <div class="phone-mock"><div class="screen"><img src="feature-lowstock.png" alt="Trevane low-stock refill warning"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="feature reverse">
+  <div class="wrap">
+    <div class="feature-copy">
+      <div class="icon">&#128228;</div>
+      <h2>Share your list in a tap.</h2>
+      <p>Export your medications to Reminders, Files, or wherever's easiest - for a pharmacist, a family member, or your next appointment. No app required on the other end.</p>
+    </div>
+    <div class="feature-phone">
+      <div class="phone-mock"><div class="screen"><img src="feature-sharelist.png" alt="Trevane share medication list"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="reassurance-section">
+  <div class="wrap">
+    <ul class="reassurance">
+      <li>No advertising, no ad trackers. Your medication list is never sold.</li>
+      <li>Use it on your own, or invite someone you trust with a short code to check in.</li>
+      <li>Unlimited medications. Always free.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <a class="cta" href="support.html">Coming soon to the App Store</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="links">
+      <a href="privacy.html">Privacy policy</a>
+      <a href="support.html">Support</a>
+    </p>
+    <p class="disclaimer">Trevane is a reminder and record-keeping tool. It does not provide medical advice, does not check drug interactions, and is not a substitute for advice from your doctor or pharmacist. Never start, stop or change a medication without speaking to your prescriber first.</p>
+  </div>
+</footer>
+
+</body>
+<script>
+  (async () => {
+    try {
+      const res = await fetch('version.json', { cache: 'no-store' });
+      const { version } = await res.json();
+      const seen = sessionStorage.getItem('trevane_site_version');
+      if (seen && seen !== version && !sessionStorage.getItem('trevane_site_reloaded')) {
+        sessionStorage.setItem('trevane_site_reloaded', '1');
+        location.reload();
+        return;
+      }
+      sessionStorage.setItem('trevane_site_version', version);
+      sessionStorage.removeItem('trevane_site_reloaded');
+    } catch (e) { /* offline or blocked - fine, just skip the check */ }
+  })();
+</script>
+</html>
