@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trevane — Medication Reminders</title>
-<meta name="description" content="Unlimited medications, always free. A calm medication reminder, refill alerts before you run out, and a simple way for someone you trust to check in.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.85em' font-size='80'%3E%F0%9F%92%8A%3C/text%3E%3C/svg%3E">
+<title>Trevane: Medication Reminders</title>
+<meta name="description" content="A calm medication reminder, with refill alerts before you run out and a simple way for someone you trust to check in. Unlimited medications, always free.">
+<link rel="icon" href="app-icon.png">
 <style>
   :root {
     --primary: #4A7C82;
     --primary-dark: #35595E;
-    --primary-tint: #E4EEEF;
     --accent: #3E7CB1;
     --ink: #2B3335;
     --ink-mute: #68787B;
     --surface: #FBFAF8;
     --card: #FFFFFF;
     --divider: #E7E2DB;
+    --bezel: #15181B;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; background: var(--surface); color: var(--ink); }
@@ -24,191 +24,106 @@
     font: 16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 24px; }
   a { color: var(--accent); }
-  h1, h2, h3 {
+
+  /* One fold: icon, name, subhead, 3 reassurance bullets, one CTA,
+     one framed phone, page ends. MedTime's structure (medtime.app) -
+     closest match to Trevane's calm/non-clinical brief per research's
+     landing-page-design-precedent.md. No feature grid, no stats, no
+     badge wall, no testimonials. */
+  main { padding: 64px 0 56px; text-align: center; }
+  .icon {
+    width: 72px; height: 72px; border-radius: 18px; display: block;
+    margin: 0 auto 20px; box-shadow: 0 6px 16px rgba(43,51,53,0.18);
+  }
+  h1 {
     font-family: -apple-system-rounded, ui-rounded, "SF Pro Rounded", "SF Pro", system-ui, sans-serif;
-    letter-spacing: -0.3px;
-    margin: 0;
+    font-size: 40px; font-weight: 800; letter-spacing: -0.4px; margin: 0 0 14px; color: var(--ink);
+  }
+  p.sub {
+    font-size: 18px; color: var(--ink-mute); max-width: 440px; margin: 0 auto 32px;
   }
 
-  /* Nav */
-  nav.topbar { padding: 20px 0; }
-  nav.topbar .wrap { display: flex; align-items: center; justify-content: space-between; }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--ink); text-decoration: none; }
-  .brand .dot { width: 28px; height: 28px; border-radius: 9px; background: var(--primary); display: inline-block; }
-  nav.topbar a.cta {
-    background: var(--primary); color: #fff; text-decoration: none; font-weight: 600; font-size: 14px;
-    padding: 10px 18px; border-radius: 999px;
+  .reassurance { list-style: none; margin: 0 0 36px; padding: 0; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .reassurance li {
+    font-size: 15px; color: var(--ink); font-weight: 600;
+    background: var(--card); border: 1px solid var(--divider); border-radius: 14px;
+    padding: 12px 20px; max-width: 420px;
   }
 
-  /* Hero */
-  .hero { padding: 48px 0 72px; }
-  .hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
-  .hero h1 { font-size: 44px; line-height: 1.15; font-weight: 800; }
-  .hero h1 .free { color: var(--primary); }
-  .hero p.sub { font-size: 18px; color: var(--ink-mute); margin: 20px 0 8px; max-width: 480px; }
-  .hero p.supporting { font-size: 15px; color: var(--ink-mute); margin: 0 0 28px; }
-  .hero .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #fff;
-    text-decoration: none; font-weight: 700; font-size: 16px; padding: 14px 24px; border-radius: 16px;
+  .cta {
+    display: inline-block; background: var(--primary); color: #fff; text-decoration: none;
+    font-weight: 700; font-size: 16px; padding: 15px 28px; border-radius: 16px; margin-bottom: 56px;
   }
-  .btn-secondary {
-    display: inline-flex; align-items: center; gap: 8px; background: var(--card); color: var(--ink);
-    text-decoration: none; font-weight: 600; font-size: 15px; padding: 13px 22px; border-radius: 16px;
-    border: 1px solid var(--divider);
+
+  /* Device frame - the page's single graphic, carrying a RAW
+     unmodified app capture (no App Store composite/background baked
+     in), per the original task's screenshot-treatment requirement. */
+  .phone-wrap { display: flex; justify-content: center; perspective: 1400px; }
+  .phone-frame {
+    position: relative;
+    width: 260px;
+    aspect-ratio: 1320 / 2868;
+    background: linear-gradient(160deg, #26292d, var(--bezel) 55%);
+    border-radius: 46px;
+    padding: 11px;
+    box-shadow:
+      0 40px 70px -24px rgba(43, 51, 53, 0.45),
+      0 0 0 1px rgba(255,255,255,0.06) inset,
+      0 2px 0 rgba(255,255,255,0.08) inset;
+    transform: rotateY(-8deg) rotateX(2deg) rotateZ(1deg);
+    transform-style: preserve-3d;
   }
-  .hero-shot { display: flex; justify-content: center; }
-  .hero-shot img { width: 100%; max-width: 300px; border-radius: 28px; box-shadow: 0 24px 60px -24px rgba(43, 51, 53, 0.35); }
-
-  /* Features */
-  .features { padding: 24px 0 64px; }
-  .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .feature-card {
-    background: var(--card); border-radius: 20px; padding: 28px; border: 1px solid var(--divider);
+  .phone-frame::before {
+    content: '';
+    position: absolute;
+    top: 22px; left: 50%; transform: translateX(-50%);
+    width: 76px; height: 22px;
+    background: var(--bezel);
+    border-radius: 14px;
+    z-index: 2;
   }
-  .feature-card h3 { font-size: 19px; margin-bottom: 10px; }
-  .feature-card p { color: var(--ink-mute); font-size: 15px; margin: 0 0 14px; }
-  .feature-card ul { margin: 0; padding-left: 18px; color: var(--ink-mute); font-size: 14px; }
-  .feature-card ul li { margin: 4px 0; }
+  .phone-screen { width: 100%; height: 100%; border-radius: 36px; overflow: hidden; background: #fff; }
+  .phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
 
-  /* Trust */
-  .trust { padding: 56px 0; background: var(--primary-tint); }
-  .trust h2 { font-size: 28px; text-align: center; margin-bottom: 8px; }
-  .trust > .wrap > p.lead { text-align: center; color: var(--ink-mute); max-width: 560px; margin: 0 auto 32px; }
-  .trust-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .trust-point { text-align: center; padding: 0 12px; }
-  .trust-point .label { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
-  .trust-point .desc { color: var(--ink-mute); font-size: 14px; }
-
-  /* Download */
-  .download { padding: 72px 0; text-align: center; }
-  .download h2 { font-size: 30px; margin-bottom: 12px; }
-  .download p { color: var(--ink-mute); font-size: 16px; max-width: 480px; margin: 0 auto 28px; }
-  .badge-soon {
-    display: inline-block; background: var(--card); border: 1px dashed var(--divider); color: var(--ink-mute);
-    font-weight: 600; font-size: 15px; padding: 16px 28px; border-radius: 16px; margin-bottom: 14px;
-  }
-  .download .beta-link { display: block; font-size: 14px; color: var(--accent); text-decoration: none; font-weight: 600; }
-
-  footer { border-top: 1px solid var(--divider); padding: 32px 0 48px; }
+  footer { border-top: 1px solid var(--divider); padding: 28px 0 40px; text-align: center; }
   footer p { color: var(--ink-mute); font-size: 13px; margin: 0 0 10px; }
   footer .links a { margin-right: 16px; font-weight: 600; font-size: 13px; text-decoration: none; }
-  footer .disclaimer { max-width: 620px; line-height: 1.5; }
+  footer .disclaimer { max-width: 520px; margin: 0 auto; line-height: 1.5; }
 
-  @media (max-width: 760px) {
-    .hero .wrap { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 34px; }
-    .hero-shot { order: -1; }
-    .feature-grid { grid-template-columns: 1fr; }
-    .trust-points { grid-template-columns: 1fr; gap: 24px; }
+  @media (max-width: 500px) {
+    main { padding: 48px 0 40px; }
+    h1 { font-size: 32px; }
+    .phone-frame { transform: none; width: 220px; }
   }
 </style>
 </head>
 <body>
 
-<nav class="topbar">
+<main>
   <div class="wrap">
-    <a href="/trevane/" class="brand"><span class="dot"></span> Trevane</a>
-    <a class="cta" href="#download">Get Trevane</a>
-  </div>
-</nav>
+    <img class="icon" src="app-icon.png" alt="Trevane app icon">
+    <h1>Trevane</h1>
+    <p class="sub">A calm medication reminder, with refill alerts before you run out and a simple way for someone you trust to check in.</p>
 
-<section class="hero">
-  <div class="wrap">
-    <div>
-      <h1><span class="free">Unlimited medications.</span><br>Always free.</h1>
-      <p class="sub">Add every medication you take. There's no cap, and no limit that shows up after a few weeks — track as many as you need, for as long as you need.</p>
-      <p class="supporting">A calm medication reminder for you, and a simple way for someone you trust to check in.</p>
-      <div class="btn-row">
-        <a class="btn-primary" href="#download">Get Trevane</a>
-        <a class="btn-secondary" href="support.html">Support</a>
-      </div>
-    </div>
-    <div class="hero-shot">
-      <img src="iphone-hero.png" alt="Trevane app showing today's medication schedule" loading="eager">
-    </div>
-  </div>
-</section>
+    <ul class="reassurance">
+      <li>No advertising, no ad trackers. Your medication list is never sold.</li>
+      <li>Use it on your own, or invite someone you trust with a short code to check in.</li>
+      <li>Unlimited medications. Always free.</li>
+    </ul>
 
-<section class="features">
-  <div class="wrap">
-    <div class="feature-grid">
+    <a class="cta" href="support.html">Coming soon to the App Store</a>
 
-      <div class="feature-card">
-        <h3>Reminders that don't give up</h3>
-        <p>Set the times you take each medication. Trevane reminds you, and you can snooze a few more minutes if your hands are full. See what's coming next right from your home screen, or mark a dose taken just by asking.</p>
-        <ul>
-          <li>Snooze for a few more minutes</li>
-          <li>Next dose on your home screen</li>
-          <li>Mark a dose taken by voice</li>
-        </ul>
-      </div>
-
-      <div class="feature-card">
-        <h3>Know before you run out</h3>
-        <p>Turn on supply tracking and Trevane counts down what's left as you take each dose. It warns you while you're getting low — not the morning you take your last one.</p>
-        <ul>
-          <li>Counts down as you take each dose</li>
-          <li>Warns you before you run out</li>
-          <li>Your choice of how much warning</li>
-        </ul>
-      </div>
-
-      <div class="feature-card">
-        <h3>Check in, don't surveil</h3>
-        <p>Invite someone you trust with a short code. They can see whether doses have been taken and whether you're running low — never your exact quantities, never your full list, unless you choose to share more.</p>
-        <ul>
-          <li>Invite with a short code</li>
-          <li>They see status, not quantities</li>
-          <li>Remove access whenever you like</li>
-        </ul>
-      </div>
-
-      <div class="feature-card">
-        <h3>A list you can hand over</h3>
-        <p>Appointments go better when you can say exactly what you're taking. Share your medication list straight from the app, as a simple list you can send or hand over at the desk.</p>
-        <ul>
-          <li>Real medication names, not guesses</li>
-          <li>Share in one tap</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="trust">
-  <div class="wrap">
-    <h2>What we don't do</h2>
-    <p class="lead">No advertising. No ad trackers. We don't sell your information, and we don't use your medication list to target advertising anywhere.</p>
-    <div class="trust-points">
-      <div class="trust-point">
-        <div class="label">No advertising, ever</div>
-        <div class="desc">Not now, not later.</div>
-      </div>
-      <div class="trust-point">
-        <div class="label">Your list is never sold</div>
-        <div class="desc">Your data stays yours.</div>
-      </div>
-      <div class="trust-point">
-        <div class="label">Use it without an account</div>
-        <div class="desc">Sign in only if you want to share with a caregiver.</div>
+    <div class="phone-wrap">
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <img src="hero-screen-raw.png" alt="Trevane app showing today's medication schedule">
+        </div>
       </div>
     </div>
   </div>
-</section>
-
-<section class="download" id="download">
-  <div class="wrap">
-    <h2>Get Trevane</h2>
-    <p>Trevane is finishing its final testing round before launching on the App Store.</p>
-    <div class="badge-soon">Coming soon to the App Store</div>
-    <br>
-    <a class="beta-link" href="support.html">Want early access? Get in touch →</a>
-  </div>
-</section>
+</main>
 
 <footer>
   <div class="wrap">
