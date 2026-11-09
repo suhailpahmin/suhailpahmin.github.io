@@ -87,7 +87,15 @@
     width: 250px; height: 555px; overflow: hidden; background: #fff;
     clip-path: path("M 6.00 0.00 L 244.00 0.00 L 246.21 0.01 L 246.92 0.03 L 247.42 0.07 L 247.83 0.13 L 248.17 0.21 L 248.46 0.30 L 248.71 0.41 L 248.94 0.54 L 249.13 0.69 L 249.31 0.87 L 249.46 1.06 L 249.59 1.29 L 249.70 1.54 L 249.79 1.83 L 249.87 2.17 L 249.93 2.58 L 249.97 3.08 L 249.99 3.79 L 250.00 6.00 L 250.00 549.00 L 249.99 551.21 L 249.97 551.92 L 249.93 552.42 L 249.87 552.83 L 249.79 553.17 L 249.70 553.46 L 249.59 553.71 L 249.46 553.94 L 249.31 554.13 L 249.13 554.31 L 248.94 554.46 L 248.71 554.59 L 248.46 554.70 L 248.17 554.79 L 247.83 554.87 L 247.42 554.93 L 246.92 554.97 L 246.21 554.99 L 244.00 555.00 L 6.00 555.00 L 3.79 554.99 L 3.08 554.97 L 2.58 554.93 L 2.17 554.87 L 1.83 554.79 L 1.54 554.70 L 1.29 554.59 L 1.06 554.46 L 0.87 554.31 L 0.69 554.13 L 0.54 553.94 L 0.41 553.71 L 0.30 553.46 L 0.21 553.17 L 0.13 552.83 L 0.07 552.42 L 0.03 551.92 L 0.01 551.21 L 0.00 549.00 L 0.00 6.00 L 0.01 3.79 L 0.03 3.08 L 0.07 2.58 L 0.13 2.17 L 0.21 1.83 L 0.30 1.54 L 0.41 1.29 L 0.54 1.06 L 0.69 0.87 L 0.87 0.69 L 1.06 0.54 L 1.29 0.41 L 1.54 0.30 L 1.83 0.21 L 2.17 0.13 L 2.58 0.07 L 3.08 0.03 L 3.79 0.01 L 6.00 0.00 Z");
   }
-  .phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  /* object-fit: contain, not cover. The screen box's pixel ratio
+     (derived from the frame's rounded bezel math) never exactly
+     equals the real screenshot's native 1206:2622 ratio, so cover
+     was cropping a sliver off both sides every time - cut off text
+     at the screen edges ("YOUR SCHEDULE" missing its Y, "See All"
+     missing letters, confirmed from a live screenshot). contain
+     guarantees the full capture is always visible with zero crop,
+     regardless of any future rounding drift in the bezel math. */
+  .phone-screen img { width: 100%; height: 100%; object-fit: contain; object-position: top; display: block; background: #fff; }
   .dynamic-island {
     position: absolute; top: 7px; left: 50%; transform: translateX(-50%);
     width: 51px; height: 14px; background: #0B0C0D; border-radius: 7px; z-index: 2;
@@ -161,7 +169,7 @@
     <div class="feature-visual">
       <div class="phone-mount">
         <div class="phone-frame">
-          <div class="phone-screen"><img src="docs-manage-medications-lowstock.png" alt="Trevane showing a low-stock warning on Metformin with a refill button"></div>
+          <div class="phone-screen"><img src="docs-manage-medications-lowstock.png?v=20261109T2230" alt="Trevane showing a low-stock warning on Metformin with a refill button"></div>
           <div class="dynamic-island"></div>
         </div>
         <div class="btn btn-power"></div>
@@ -179,7 +187,7 @@
     <div class="feature-visual">
       <div class="phone-mount">
         <div class="phone-frame">
-          <div class="phone-screen"><img src="docs-caregiver-watching-over-me.png" alt="Trevane Caregiver tab showing a shared relationship"></div>
+          <div class="phone-screen"><img src="docs-caregiver-watching-over-me.png?v=20261109T2230" alt="Trevane Caregiver tab showing a shared relationship"></div>
           <div class="dynamic-island"></div>
         </div>
         <div class="btn btn-power"></div>
@@ -197,7 +205,7 @@
     <div class="feature-visual">
       <div class="phone-mount">
         <div class="phone-frame">
-          <div class="phone-screen"><img src="hero-screen-raw.png" alt="Trevane app showing today's medication schedule"></div>
+          <div class="phone-screen"><img src="hero-screen-raw.png?v=20261109T2230" alt="Trevane app showing today's medication schedule"></div>
           <div class="dynamic-island"></div>
         </div>
         <div class="btn btn-power"></div>
