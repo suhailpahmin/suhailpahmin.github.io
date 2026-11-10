@@ -4,169 +4,166 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trevane: Medication Reminders</title>
-<meta name="description" content="A calm medication reminder, with refill alerts before you run out and a simple way for someone you trust to check in.">
+<meta name="description" content="A calm medication reminder for you and the people you look after. Refill alerts before you run out, and a simple way for family to check in.">
 <link rel="icon" href="app-icon.png">
 <style>
+  @font-face { font-family: "Fraunces"; src: url("fonts/Fraunces.ttf"); font-weight: 100 900; font-display: swap; }
+  @font-face { font-family: "Figtree"; src: url("fonts/Figtree.ttf"); font-weight: 300 900; font-display: swap; }
   :root {
-    --primary: #4A7C82;
-    --primary-dark: #35595E;
-    --accent: #3E7CB1;
-    --ink: #2B3335;
-    --ink-mute: #68787B;
-    --surface: #FBFAF8;
-    --card: #FFFFFF;
-    --divider: #E7E2DB;
+    --teal: #4e8389; --teal-deep: #32565b; --teal-ink: #1f3d42; --sky: #c6eef5;
+    --ink: #24302f; --ink-mute: #5d6f71; --surface: #fbfaf8; --card: #ffffff; --divider: #e7e2db;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; background: var(--surface); color: var(--ink); }
-  body {
-    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "Helvetica Neue", Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
-  a { color: var(--accent); }
-  h1, h2 {
-    font-family: -apple-system-rounded, ui-rounded, "SF Pro Rounded", "SF Pro", system-ui, sans-serif;
-    font-weight: 800; letter-spacing: -0.4px; color: var(--ink); margin: 0;
-  }
-
-  .topbar { padding: 28px 0; }
-  .topbar .wrap { display: flex; align-items: center; gap: 12px; }
-  .topbar img { width: 32px; height: 32px; border-radius: 9px; }
-  .topbar span { font-weight: 800; font-size: 17px; }
+  body { font: 17px/1.6 "Figtree", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  h1, h2 { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 0; letter-spacing: -0.012em; margin: 0; }
+  a { color: var(--teal-deep); }
 
   /* ---- Hero ---- */
-  .hero { padding: 24px 0 72px; text-align: center; }
-  .hero .icon {
-    width: 88px; height: 88px; border-radius: 22px; display: block;
-    margin: 0 auto 24px; box-shadow: 0 10px 24px rgba(43,51,53,0.18);
-  }
-  .hero h1 { font-size: 44px; line-height: 1.08; margin: 0 0 16px; }
-  .hero p.sub { font-size: 19px; color: var(--ink-mute); max-width: 480px; margin: 0 auto 32px; }
-  .cta {
-    display: inline-block; background: var(--primary); color: #fff; text-decoration: none;
-    font-weight: 700; font-size: 16px; padding: 15px 30px; border-radius: 16px;
-  }
+  .hero { background: linear-gradient(180deg, var(--teal) 0%, var(--teal-deep) 100%); color: #fff; overflow: hidden; }
+  .topbar { display: flex; align-items: center; gap: 12px; padding: 26px 0; }
+  .topbar img { width: 34px; height: 34px; border-radius: 9px; }
+  .topbar span { font-weight: 700; font-size: 18px; }
+  .hero-grid { display: flex; align-items: center; gap: 56px; padding: 40px 0 0; }
+  .hero-text { flex: 1 1 0; min-width: 0; padding-bottom: 72px; }
+  .hero h1 { font-size: 62px; line-height: 1.06; }
+  .hero h1 em { font-style: normal; color: var(--sky); }
+  .hero p.sub { font-size: 20px; color: #e2f1f3; max-width: 470px; margin: 22px 0 32px; }
+  .cta { display: inline-block; background: #fff; color: var(--teal-ink); text-decoration: none; font-weight: 700; font-size: 16px; padding: 15px 28px; border-radius: 16px; }
+  .cta.dark { background: var(--teal); color: #fff; }
+  .hero .note { display: block; margin-top: 14px; font-size: 14px; color: #cfe6ea; }
+  .hero-visual { flex: 0 0 auto; align-self: flex-end; }
+  .screen { display: block; width: 300px; border-radius: 38px; box-shadow: 0 30px 60px -20px rgba(8,24,27,0.55); }
+  .hero-visual .screen { width: 330px; border-radius: 42px 42px 0 0; margin-bottom: -120px; }
 
-  /* ---- Feature rows: alternating text + real device capture ---- */
-  .feature { display: flex; align-items: center; gap: 72px; padding: 64px 0; }
+  /* ---- Film ---- */
+  .film { padding: 84px 0 24px; text-align: center; }
+  .film h2 { font-size: 36px; margin-bottom: 28px; }
+  .film video { width: 100%; max-width: 920px; border-radius: 24px; display: block; margin: 0 auto; box-shadow: 0 30px 60px -28px rgba(31,61,66,0.5); background: var(--teal-deep); }
+
+  /* ---- Features ---- */
+  .feature { display: flex; align-items: center; gap: 80px; padding: 72px 0; }
   .feature.reverse { flex-direction: row-reverse; }
   .feature-text { flex: 1 1 0; min-width: 0; }
-  .feature-text h2 { font-size: 30px; line-height: 1.15; margin: 0 0 16px; }
-  .feature-text p { font-size: 17px; color: var(--ink-mute); max-width: 420px; }
-  .feature-visual { flex: 0 0 auto; display: flex; justify-content: center; }
+  .feature-text h2 { font-size: 40px; line-height: 1.1; margin-bottom: 16px; }
+  .feature-text p { color: var(--ink-mute); max-width: 440px; margin: 0; font-size: 18px; }
+  .feature-visual { flex: 0 0 auto; padding: 36px 48px; border-radius: 36px; background: linear-gradient(180deg, #dcecee 0%, #c4dcdf 100%); }
+  .feature-visual .screen { width: 270px; border-radius: 34px; }
 
-  /* ---- Round 8: real Apple device frame, not a hand-drawn CSS
-     squircle. The screenshot is pre-composited with PIL into the
-     actual Apple iPhone 17 frame PNG from fastlane/frameit-frames
-     (the real asset fastlane's frameit tool uses - sourced from
-     Apple's own device renders). The frame's rounded corners, Dynamic
-     Island, camera, and buttons are real pixels from that PNG, not
-     approximated geometry. This replaces 7 rounds of corner-radius
-     guessing that kept reading as "square" or "not rounded enough" -
-     there is no longer a radius value to get wrong.
-     See docs/design/phone-frame-spec-2026-11/compose_real_frame.py */
-  .phone-mount {
-    width: 260px;
-    transform: rotateY(-8deg) rotateX(2deg) rotateZ(1deg);
-    transform-style: preserve-3d;
-  }
-  .phone-mount img {
-    width: 100%; display: block;
-    filter: drop-shadow(0 7px 14px rgba(43, 51, 53, 0.3));
-  }
+  /* ---- Promise ---- */
+  .promise { background: linear-gradient(180deg, #1e3438 0%, #0f1b1e 100%); color: #fff; text-align: center; padding: 88px 0; margin-top: 40px; }
+  .promise h2 { font-size: 46px; line-height: 1.1; margin-bottom: 18px; }
+  .promise p { color: #cfe6ea; max-width: 520px; margin: 0 auto; font-size: 18px; }
 
-  /* ---- No ads, stated once. ---- */
-  .promise { background: var(--primary); color: #fff; text-align: center; padding: 72px 0; margin: 40px 0 0; }
-  .promise h2 { color: #fff; font-size: 34px; margin: 0 0 14px; }
-  .promise p { font-size: 17px; opacity: 0.92; max-width: 480px; margin: 0 auto; }
+  .final-cta { text-align: center; padding: 80px 0; }
+  .final-cta h2 { font-size: 34px; margin-bottom: 26px; }
 
-  .final-cta { text-align: center; padding: 72px 0; }
-  .final-cta h2 { font-size: 28px; margin: 0 0 24px; }
-
-  footer { border-top: 1px solid var(--divider); padding: 28px 0 40px; text-align: center; }
+  footer { border-top: 1px solid var(--divider); padding: 28px 0 44px; text-align: center; }
   footer p { color: var(--ink-mute); font-size: 13px; margin: 0 0 10px; }
-  footer .links a { margin-right: 16px; font-weight: 600; font-size: 13px; text-decoration: none; }
-  footer .disclaimer { max-width: 520px; margin: 0 auto; line-height: 1.5; }
+  footer .links a { margin: 0 8px; font-weight: 600; text-decoration: none; }
+  footer .disclaimer, footer .credit { max-width: 560px; margin: 0 auto 10px; line-height: 1.5; }
 
-  @media (max-width: 820px) {
-    .feature, .feature.reverse { flex-direction: column; gap: 32px; text-align: center; padding: 48px 0; }
+  @media (max-width: 860px) {
+    .hero-grid { flex-direction: column; text-align: center; gap: 36px; padding-top: 16px; }
+    .hero-text { padding-bottom: 0; }
+    .hero h1 { font-size: 42px; }
+    .hero p.sub { margin-left: auto; margin-right: auto; font-size: 18px; }
+    .hero-visual { align-self: center; }
+    .hero-visual .screen { width: 260px; margin-bottom: -90px; border-radius: 34px 34px 0 0; }
+    .film { padding-top: 56px; }
+    .film h2 { font-size: 28px; }
+    .feature, .feature.reverse { flex-direction: column; gap: 28px; text-align: center; padding: 48px 0; }
+    .feature-text h2 { font-size: 32px; }
     .feature-text p { margin: 0 auto; }
+    .feature-visual { padding: 28px 36px; }
+    .feature-visual .screen { width: 230px; border-radius: 30px; }
+    .promise h2 { font-size: 34px; }
   }
-  @media (max-width: 500px) {
-    .hero { padding: 16px 0 48px; }
-    .hero h1 { font-size: 32px; }
-    .phone-mount { transform: none; width: 220px; }
-    .promise h2 { font-size: 26px; }
-  }
-  /* Sections that carry .wrap set their own vertical padding with a
-     shorthand, which wiped out .wrap's side padding. Restore it. */
-  .hero.wrap, .feature.wrap, .final-cta.wrap { padding-left: 24px; padding-right: 24px; }
+  /* .wrap sections that set vertical padding with a shorthand must keep their side padding. */
+  .film.wrap, .feature.wrap, .final-cta.wrap { padding-left: 24px; padding-right: 24px; }
 </style>
 </head>
 <body>
 
-<div class="topbar">
+<header class="hero">
   <div class="wrap">
-    <img src="app-icon.png" alt="Trevane icon">
-    <span>Trevane</span>
+    <div class="topbar">
+      <img src="app-icon.png" alt="Trevane icon">
+      <span>Trevane</span>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-text">
+        <h1>Did Mom take her medication <em>today?</em></h1>
+        <p class="sub">A calm medication reminder for you and the people you look after.</p>
+        <a class="cta" href="support.html">Coming soon to the App Store</a>
+        <span class="note">For iPhone and iPad</span>
+      </div>
+      <div class="hero-visual">
+        <img class="screen" src="img/home-sharedcare.jpg" alt="Trevane Home screen with Mom's doses marked taken for today">
+      </div>
+    </div>
   </div>
-</div>
+</header>
 
 <main>
-  <section class="hero wrap">
-    <img class="icon" src="app-icon.png" alt="Trevane app icon">
-    <h1>Medication reminders<br>for the whole family.</h1>
-    <p class="sub">A calm medication reminder, with refill alerts before you run out and a simple way for someone you trust to check in.</p>
-    <a class="cta" href="support.html">Coming soon to the App Store</a>
+  <section class="film wrap">
+    <h2>See Trevane in action</h2>
+    <video controls playsinline preload="metadata" poster="promo-poster.jpg">
+      <source src="promo.mp4" type="video/mp4">
+    </video>
   </section>
 
   <section class="feature wrap">
     <div class="feature-text">
-      <h2>Never run out</h2>
-      <p>Trevane tracks what you have left and lets you know while there's still time to refill, not after the bottle's empty.</p>
+      <h2>See that Mom took her medication.</h2>
+      <p>Share a code with someone who looks out for you. They can see whether today's doses were taken and whether something is running low. They never see your exact quantities, and you can stop sharing at any time.</p>
     </div>
-    <div class="feature-visual">
-      <div class="phone-mount">
-        <img src="real-frame-lowstock.png?v=20261109T2345" alt="Trevane showing a low-stock warning on Metformin with a refill button, in a real iPhone frame">
-      </div>
-    </div>
+    <div class="feature-visual"><img class="screen" src="img/carer-list.jpg" alt="Caregiver screen with Mom and Dad and their doses for today"></div>
   </section>
 
   <section class="feature reverse wrap">
     <div class="feature-text">
-      <h2>Someone you trust can check in</h2>
-      <p>Share a code with someone who looks out for you. They can check your schedule whenever they open the app. Nothing is pushed or recorded without your say.</p>
+      <h2>Reminders you can act on.</h2>
+      <p>Mark a dose taken or snooze it, right from the reminder. No need to open the app first.</p>
     </div>
-    <div class="feature-visual">
-      <div class="phone-mount">
-        <img src="real-frame-caregiver.png?v=20261109T2345" alt="Trevane Caregiver tab showing a shared relationship, in a real iPhone frame">
-      </div>
-    </div>
+    <div class="feature-visual"><img class="screen" src="img/reminder-actions.jpg" alt="A Trevane reminder with Taken and Snooze buttons"></div>
   </section>
 
   <section class="feature wrap">
     <div class="feature-text">
-      <h2>A clear picture, every day</h2>
-      <p>One list for today: taken, upcoming, and overdue, all in one place. No digging through a medicine cabinet to remember what's next.</p>
+      <h2>Know before you run out.</h2>
+      <p>Trevane tracks what you have left and lets you know while there's still time to refill, not after the bottle's empty.</p>
     </div>
-    <div class="feature-visual">
-      <div class="phone-mount">
-        <img src="real-frame-hero.png?v=20261109T2345" alt="Trevane app showing today's medication schedule, in a real iPhone frame">
-      </div>
+    <div class="feature-visual"><img class="screen" src="img/medications-list.jpg" alt="Medication list with a running low warning"></div>
+  </section>
+
+  <section class="feature reverse wrap">
+    <div class="feature-text">
+      <h2>Real medication names.</h2>
+      <p>Start typing and pick from the list. No guessing at spellings.</p>
     </div>
+    <div class="feature-visual"><img class="screen" src="img/add-search.jpg" alt="Add Medication screen with name suggestions"></div>
+  </section>
+
+  <section class="feature wrap">
+    <div class="feature-text">
+      <h2>Ready for your next appointment.</h2>
+      <p>Share your medication list in one tap, so your doctor or pharmacist sees exactly what you take.</p>
+    </div>
+    <div class="feature-visual"><img class="screen" src="img/share-sheet.jpg" alt="Sharing the medication list"></div>
   </section>
 
   <section class="promise">
     <div class="wrap">
-      <h2>No advertising. No trackers.</h2>
-      <p>Your medication list is never sold. Add as many medications as you need.</p>
+      <h2>No ads.<br>No advertising trackers.</h2>
+      <p>Your medication list is never sold and never used for advertising. Add as many medications as you need.</p>
     </div>
   </section>
 
   <section class="final-cta wrap">
     <h2>Trevane for iPhone and iPad</h2>
-    <a class="cta" href="support.html">Coming soon to the App Store</a>
+    <a class="cta dark" href="support.html">Coming soon to the App Store</a>
   </section>
 </main>
 
@@ -177,24 +174,9 @@
       <a href="support.html">Support</a>
     </p>
     <p class="disclaimer">Trevane is a reminder and record-keeping tool. It does not provide medical advice, does not check drug interactions, and is not a substitute for advice from your doctor or pharmacist. Never start, stop or change a medication without speaking to your prescriber first.</p>
+    <p class="credit">Film music: "Ambiment" by Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License. http://creativecommons.org/licenses/by/4.0/</p>
   </div>
 </footer>
 
 </body>
-<script>
-  (async () => {
-    try {
-      const res = await fetch('version.json', { cache: 'no-store' });
-      const { version } = await res.json();
-      const seen = sessionStorage.getItem('trevane_site_version');
-      if (seen && seen !== version && !sessionStorage.getItem('trevane_site_reloaded')) {
-        sessionStorage.setItem('trevane_site_reloaded', '1');
-        location.reload();
-        return;
-      }
-      sessionStorage.setItem('trevane_site_version', version);
-      sessionStorage.removeItem('trevane_site_reloaded');
-    } catch (e) { /* offline or blocked - fine, just skip the check */ }
-  })();
-</script>
 </html>
