@@ -99,6 +99,9 @@
     .phone-mount { transform: none; width: 220px; }
     .promise h2 { font-size: 26px; }
   }
+  /* Sections that carry .wrap set their own vertical padding with a
+     shorthand, which wiped out .wrap's side padding. Restore it. */
+  .hero.wrap, .feature.wrap, .final-cta.wrap { padding-left: 24px; padding-right: 24px; }
 </style>
 </head>
 <body>
