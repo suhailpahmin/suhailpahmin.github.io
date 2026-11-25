@@ -22,7 +22,9 @@ a{color:inherit}
 /* nav */
 .nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px var(--pad);font-size:15px;transition:background .4s var(--ease),backdrop-filter .4s}
 .nav.solid{background:rgba(10,15,18,.72);-webkit-backdrop-filter:saturate(1.6) blur(18px);backdrop-filter:saturate(1.6) blur(18px)}
-.nav b{font-weight:650;font-size:17px;letter-spacing:-.2px}
+.nav b{font-weight:650;font-size:17px;letter-spacing:-.2px;opacity:0;transform:translateY(6px);pointer-events:none;transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.nav.named b{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.nav b{transition:none;transform:none}}
 .nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
 .nav ul a{text-decoration:none;opacity:.78}
 .nav ul a:hover{opacity:1}
@@ -199,8 +201,13 @@ a{color:inherit}
  var reduce = matchMedia('(prefers-reduced-motion: reduce)');
  var nav = document.getElementById('nav');
 
- // nav background after leaving hero
- addEventListener('scroll', function(){ nav.classList.toggle('solid', scrollY > 40); }, {passive:true});
+ // nav background after leaving hero; name shows once the big headline has scrolled under the bar
+ var heroName = document.querySelector('.hero .word');
+ function navState(){
+  nav.classList.toggle('solid', scrollY > 40);
+  nav.classList.toggle('named', heroName.getBoundingClientRect().bottom < nav.offsetHeight);
+ }
+ addEventListener('scroll', navState, {passive:true}); addEventListener('resize', navState); navState();
 
  // smooth scroll for in-page links only
  document.querySelectorAll('a[href^="#"]').forEach(function(a){
