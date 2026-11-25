@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Bloom, a money tracker for iPhone</title>
+<meta name="description" content="Bloom is a money tracker for iPhone. See what is safe to spend until payday.">
+<meta name="theme-color" content="#2F7D6D">
+<link rel="preload" as="image" href="img/bloom-home-b91a5749-r3.webp">
+<script>document.documentElement.classList.replace('no-js','js')</script>
+<style>
+:root{--pad:clamp(24px,5vw,64px);--ease:cubic-bezier(.2,.7,.2,1);
+ --teal:#2F7D6D;--deep:#0E4A3F;--btn:#2C7A6A;
+ --bg:#F7F8F6;--ink:#10201C;--mute:rgba(16,32,28,.74);
+ --s1:#F7F8F6;--s2:#E4EFE8;--s3:#EDF1E1;--foot:#F7F8F6;--line:rgba(16,32,28,.12)}
+@media (prefers-color-scheme:dark){:root{--teal:#1B4F44;--bg:#0C1512;--ink:#F2F6F4;--mute:rgba(242,246,244,.76);
+ --s1:#0C1512;--s2:#112019;--s3:#131C14;--foot:#0C1512;--line:rgba(255,255,255,.12);--btn:#3A9A86}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:4px solid currentColor;outline-offset:4px;border-radius:8px}
+
+/* nav */
+.nav{position:absolute;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px var(--pad);font-size:15px;color:#fff}
+.nav .brand{display:flex;align-items:center;gap:10px;font-weight:650;font-size:17px;text-decoration:none}
+.nav .brand img{width:32px;height:32px;border-radius:8px}
+.nav a.by{text-decoration:none;opacity:.85}
+.nav a.by:hover{opacity:1}
+
+/* store button */
+.store{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:99px;background:var(--btn);color:#fff;font-weight:650;font-size:17px;text-decoration:none;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.store:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(0,0,0,.45)}
+.hero .store{background:var(--deep)}
+.badge{display:inline-block;line-height:0;margin-top:32px}.badge img{height:54px;width:auto}
+.fine{margin:14px 0 0;font-size:14px;opacity:.78}
+
+/* hero */
+.hero{position:relative;overflow:hidden;isolation:isolate;background:var(--teal);color:#fff;padding:0 0 120px}
+.hero .word{margin:0;padding:clamp(96px,14vh,140px) var(--pad) 0;text-align:center;font-weight:800;letter-spacing:-.055em;line-height:.9;font-size:clamp(64px,13vw,210px);white-space:nowrap}
+.grid{position:relative;z-index:3;max-width:1240px;margin:0 auto;padding:clamp(64px,8vh,96px) var(--pad) 0;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(48px,6vw,96px)}
+.txt h2,.txt .lead{margin:0}
+.txt .lead{font-size:clamp(24px,2.6vw,36px);line-height:1.2;letter-spacing:-.02em;font-weight:700;max-width:18ch}
+.txt p{margin:18px 0 0;font-size:clamp(17px,1.4vw,20px);line-height:1.5;max-width:36ch;opacity:.9}
+.txt .store{margin-top:32px}
+.phw{display:flex;justify-content:center;min-width:0}
+.ph{height:min(76vh,720px);width:auto;max-width:100%;object-fit:contain;filter:drop-shadow(0 40px 60px rgba(0,0,0,.35))}
+
+/* moments */
+.moment{position:relative;overflow:hidden;padding:120px 0}
+.moment.a{background:var(--s1)}.moment.b{background:var(--s2)}.moment.c{background:var(--s3)}
+.moment h2{font-size:clamp(32px,3.6vw,52px);line-height:1.05;letter-spacing:-.025em;font-weight:700;max-width:13ch}
+.moment .grid{padding-top:0}
+.moment.rev .phw{order:-1}
+.moment .ph{filter:drop-shadow(0 40px 60px rgba(0,0,0,.28))}
+
+/* points */
+.points{padding:120px var(--pad);background:var(--s2)}
+.points ul{list-style:none;margin:0 auto;padding:0;max-width:1240px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.points li{font-size:clamp(20px,2vw,28px);font-weight:650;letter-spacing:-.015em;line-height:1.25;padding-top:20px;border-top:2px solid var(--teal)}
+@media (prefers-color-scheme:dark){.points li{border-top-color:var(--btn)}}
+/* closing */
+.cta{padding:120px var(--pad);text-align:center;background:var(--s1)}
+.cta h2{margin:0;font-size:clamp(32px,3.6vw,52px);letter-spacing:-.025em;line-height:1.05}
+.cta .store{margin-top:32px}
+
+/* footer */
+.foot{padding:56px var(--pad) 48px;background:var(--foot);border-top:1px solid var(--line)}
+.foot .in{max-width:1240px;margin:0 auto}
+.foot .priv{margin:0;font-size:clamp(17px,1.5vw,20px);line-height:1.5;max-width:60ch}
+.foot nav{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:20px;font-size:15px}
+.foot nav a{display:inline-block;min-height:44px;line-height:44px;color:var(--mute)}
+.foot nav a:hover{color:var(--ink)}
+
+@media (prefers-reduced-motion:no-preference){
+ .js .reveal{opacity:0;transform:translate3d(0,24px,0);transition:opacity .6s ease-out,transform .6s ease-out;transition-delay:calc(var(--i,0) * 80ms)}
+ .js .reveal.in{opacity:1;transform:none}
+ .js .hero .word,.js .hero .txt,.js .hero .phw{animation:rise 1s var(--ease) both}
+ .js .hero .txt{animation-delay:.12s}.js .hero .phw{animation-delay:.2s}
+ [data-speed]{will-change:transform}
+}
+@keyframes rise{from{opacity:0;transform:translate3d(0,24px,0)}to{opacity:1;transform:none}}
+
+@media (max-width:760px){
+ .hero{padding-bottom:80px}
+ .hero .word{white-space:normal;font-size:clamp(56px,17vw,88px);padding-top:96px;line-height:.95}
+ .grid,.moment .grid{grid-template-columns:1fr;gap:40px;padding:48px 24px 0}
+ .moment{padding:80px 0}.moment .grid{padding-top:0}
+ .moment.rev .phw{order:0}
+ .phw{order:2}
+ .ph{height:auto;width:78%;max-width:340px}
+ .points{padding:80px 24px}.points ul{grid-template-columns:1fr;gap:28px}
+ .cta{padding:80px 24px}
+ .foot{padding:48px 24px 40px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+ <nav class="nav" aria-label="Main">
+  <a class="brand" href="/bloom/"><img src="img/icon-bloom.png" width="32" height="32" alt="">Bloom</a>
+  <a class="by" href="/">Suhail Pahmin</a>
+ </nav>
+ <h1 class="word" data-speed="0.85">Safe to spend</h1>
+ <div class="grid">
+  <div class="txt">
+   <p class="lead">See what is safe to spend until payday.</p>
+   <p>Bloom is a money tracker for iPhone. It works out what is left after the bills and cards you still owe.</p>
+   <a class="badge" href="https://apps.apple.com/app/id6748146138"><img src="../img/app-store-badge.svg" width="162" height="54" alt="Download on the App Store"></a>
+   <p class="fine">For iPhone</p>
+  </div>
+  <div class="phw" data-speed="1.1"><img class="ph" src="img/bloom-home-b91a5749-r3.webp" width="704" height="1440" alt="Bloom Home screen showing the safe to spend amount, days to payday and bills that need attention"></div>
+ </div>
+</header>
+
+<main>
+ <section class="moment a rev" aria-labelledby="m1">
+  <div class="grid">
+   <div class="txt">
+    <h2 class="reveal" id="m1">Every purchase, in one place.</h2>
+    <p class="reveal" style="--i:1">Search your activity, filter it, and add a new entry in one tap.</p>
+   </div>
+   <div class="phw"><img class="ph reveal" data-speed="1.08" src="img/bloom-activity-ff39ff6c-r3.webp" width="704" height="1440" alt="Bloom Activity list of recent purchases" loading="lazy"></div>
+  </div>
+ </section>
+
+ <section class="moment b" aria-labelledby="m2">
+  <div class="grid">
+   <div class="txt">
+    <h2 class="reveal" id="m2">Know what your cards owe.</h2>
+    <p class="reveal" style="--i:1">See each card's balance and statement, and what is due next.</p>
+   </div>
+   <div class="phw"><img class="ph reveal" data-speed="1.08" src="img/bloom-cards-94b59912-r3.webp" width="704" height="1440" alt="Bloom Cards screen with a card, its outstanding balance and this cycle" loading="lazy"></div>
+  </div>
+ </section>
+
+ <section class="moment c rev" aria-labelledby="m3">
+  <div class="grid">
+   <div class="txt">
+    <h2 class="reveal" id="m3">See where the month is heading.</h2>
+    <p class="reveal" style="--i:1">Net worth, a cash flow forecast and a short note on your month.</p>
+   </div>
+   <div class="phw"><img class="ph reveal" data-speed="1.08" src="img/bloom-insights-799098be-r3.webp" width="704" height="1440" alt="Bloom Insights screen with net worth and a cash flow forecast" loading="lazy"></div>
+  </div>
+ </section>
+
+ <section class="moment a" aria-labelledby="m4">
+  <div class="grid">
+   <div class="txt">
+    <h2 class="reveal" id="m4">Your number, without opening Bloom.</h2>
+    <p class="reveal" style="--i:1">Put Safe to Spend on your Home Screen and Lock Screen.</p>
+   </div>
+   <div class="phw"><img class="ph reveal" data-speed="1.08" src="img/bloom-widget-b4c1c0e5-r4.webp" width="704" height="1440" alt="iPhone Home Screen with two Bloom Safe to Spend widgets" loading="lazy"></div>
+  </div>
+ </section>
+
+ <section class="points" aria-label="Why Bloom">
+  <ul>
+   <li class="reveal">No ads</li>
+   <li class="reveal" style="--i:1">Stays on your device and iCloud</li>
+   <li class="reveal" style="--i:2">Made for monthly bills and cards</li>
+  </ul>
+ </section>
+
+ <section class="cta" aria-labelledby="m3">
+  <h2 class="reveal" id="m3">Bloom, for iPhone.</h2>
+  <a class="badge reveal" style="--i:1" href="https://apps.apple.com/app/id6748146138"><img src="../img/app-store-badge.svg" width="162" height="54" alt="Download on the App Store"></a>
+ </section>
+</main>
+
+<footer class="foot">
+ <div class="in">
+  <p class="priv">No ads. Your financial data stays on your device and in your iCloud.</p>
+  <nav aria-label="Bloom links">
+   <a href="/bloom_legal_docs/">Support</a>
+   <a href="/bloom_legal_docs/privacy.html">Privacy</a>
+   <a href="/">Back to home</a>
+  </nav>
+ </div>
+</footer>
+
+<script>
+(function(){
+ var reduce = matchMedia('(prefers-reduced-motion: reduce)');
+ if (reduce.matches) return;
+ var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+ }, {threshold:.15});
+ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+ var layers = [].slice.call(document.querySelectorAll('[data-speed]'));
+ var wide = matchMedia('(min-width: 761px)');
+ var ticking = false, MAX = 60;
+ function frame(){
+  ticking = false;
+  var vh = innerHeight;
+  layers.forEach(function(el){
+   if(!wide.matches){ el.style.translate = ''; return; }
+   var host = el.closest('header,.moment');
+   var r = host.getBoundingClientRect();
+   if (r.bottom < -100 || r.top > vh + 100) return;
+   var speed = parseFloat(el.dataset.speed);
+   var d = -r.top * (speed - 1);
+   if (host.tagName !== 'HEADER') d = (vh/2 - (r.top + r.height/2)) * (speed - 1);
+   d = Math.max(-MAX, Math.min(MAX, d));
+   el.style.translate = '0 ' + d.toFixed(1) + 'px';
+  });
+ }
+ function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(frame); } }
+ addEventListener('scroll', onScroll, {passive:true});
+ addEventListener('resize', onScroll);
+ frame();
+})();
+</script>
+</body>
+</html>
