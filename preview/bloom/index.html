@@ -8,7 +8,7 @@
 <title>Bloom, a money tracker for iPhone</title>
 <meta name="description" content="Bloom is a money tracker for iPhone. See what is safe to spend until payday.">
 <meta name="theme-color" content="#2F7D6D">
-<link rel="preload" as="image" href="img/bloom-home-9737c545.webp">
+<link rel="preload" as="image" href="img/bloom-home-b91a5749-r3.webp">
 <script>document.documentElement.classList.replace('no-js','js')</script>
 <style>
 :root{--pad:clamp(24px,5vw,64px);--ease:cubic-bezier(.2,.7,.2,1);
@@ -35,6 +35,7 @@ a{color:inherit}
 .store{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:99px;background:var(--btn);color:#fff;font-weight:650;font-size:17px;text-decoration:none;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
 .store:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(0,0,0,.45)}
 .hero .store{background:var(--deep)}
+.badge{display:inline-block;line-height:0;margin-top:32px}.badge img{height:54px;width:auto}
 .fine{margin:14px 0 0;font-size:14px;opacity:.78}
 
 /* hero */
@@ -56,6 +57,11 @@ a{color:inherit}
 .moment.rev .phw{order:-1}
 .moment .ph{filter:drop-shadow(0 40px 60px rgba(0,0,0,.28))}
 
+/* points */
+.points{padding:120px var(--pad);background:var(--s2)}
+.points ul{list-style:none;margin:0 auto;padding:0;max-width:1240px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.points li{font-size:clamp(20px,2vw,28px);font-weight:650;letter-spacing:-.015em;line-height:1.25;padding-top:20px;border-top:2px solid var(--teal)}
+@media (prefers-color-scheme:dark){.points li{border-top-color:var(--btn)}}
 /* closing */
 .cta{padding:120px var(--pad);text-align:center;background:var(--s1)}
 .cta h2{margin:0;font-size:clamp(32px,3.6vw,52px);letter-spacing:-.025em;line-height:1.05}
@@ -86,6 +92,7 @@ a{color:inherit}
  .moment.rev .phw{order:0}
  .phw{order:2}
  .ph{height:auto;width:78%;max-width:340px}
+ .points{padding:80px 24px}.points ul{grid-template-columns:1fr;gap:28px}
  .cta{padding:80px 24px}
  .foot{padding:48px 24px 40px}
 }
@@ -103,10 +110,10 @@ a{color:inherit}
   <div class="txt">
    <p class="lead">See what is safe to spend until payday.</p>
    <p>Bloom is a money tracker for iPhone. It works out what is left after the bills and cards you still owe.</p>
-   <a class="store" href="https://apps.apple.com/app/id6748146138">View on the App Store</a>
+   <a class="badge" href="https://apps.apple.com/app/id6748146138"><img src="../img/app-store-badge.svg" width="162" height="54" alt="Download on the App Store"></a>
    <p class="fine">For iPhone</p>
   </div>
-  <div class="phw" data-speed="1.1"><img class="ph" src="img/bloom-home-9737c545.webp" width="704" height="1440" alt="Bloom Home screen showing the safe to spend amount, days to payday and bills that need attention"></div>
+  <div class="phw" data-speed="1.1"><img class="ph" src="img/bloom-home-b91a5749-r3.webp" width="704" height="1440" alt="Bloom Home screen showing the safe to spend amount, days to payday and bills that need attention"></div>
  </div>
 </header>
 
@@ -117,7 +124,7 @@ a{color:inherit}
     <h2 class="reveal" id="m1">Every purchase, in one place.</h2>
     <p class="reveal" style="--i:1">Search your activity, filter it, and add a new entry in one tap.</p>
    </div>
-   <div class="phw"><img class="ph reveal" data-speed="1.08" src="img/bloom-activity-a9808ffd.webp" width="704" height="1440" alt="Bloom Activity list of recent purchases" loading="lazy"></div>
+   <div class="phw"><img class="ph reveal" data-speed="1.08" src="img/bloom-activity-ff39ff6c-r3.webp" width="704" height="1440" alt="Bloom Activity list of recent purchases" loading="lazy"></div>
   </div>
  </section>
 
@@ -127,13 +134,41 @@ a{color:inherit}
     <h2 class="reveal" id="m2">Know what your cards owe.</h2>
     <p class="reveal" style="--i:1">See each card's balance and statement, and what is due next.</p>
    </div>
-   <div class="phw"><img class="ph reveal" data-speed="1.08" src="img/bloom-cards-3bf6d936.webp" width="704" height="1440" alt="Bloom Cards screen with a card, its outstanding balance and this cycle" loading="lazy"></div>
+   <div class="phw"><img class="ph reveal" data-speed="1.08" src="img/bloom-cards-94b59912-r3.webp" width="704" height="1440" alt="Bloom Cards screen with a card, its outstanding balance and this cycle" loading="lazy"></div>
   </div>
+ </section>
+
+ <section class="moment c rev" aria-labelledby="m3">
+  <div class="grid">
+   <div class="txt">
+    <h2 class="reveal" id="m3">See where the month is heading.</h2>
+    <p class="reveal" style="--i:1">Net worth, a cash flow forecast and a short note on your month.</p>
+   </div>
+   <div class="phw"><img class="ph reveal" data-speed="1.08" src="img/bloom-insights-799098be-r3.webp" width="704" height="1440" alt="Bloom Insights screen with net worth and a cash flow forecast" loading="lazy"></div>
+  </div>
+ </section>
+
+ <section class="moment a" aria-labelledby="m4">
+  <div class="grid">
+   <div class="txt">
+    <h2 class="reveal" id="m4">Your number, without opening Bloom.</h2>
+    <p class="reveal" style="--i:1">Put Safe to Spend on your Home Screen and Lock Screen.</p>
+   </div>
+   <div class="phw"><img class="ph reveal" data-speed="1.08" src="img/bloom-widget-b4c1c0e5-r4.webp" width="704" height="1440" alt="iPhone Home Screen with two Bloom Safe to Spend widgets" loading="lazy"></div>
+  </div>
+ </section>
+
+ <section class="points" aria-label="Why Bloom">
+  <ul>
+   <li class="reveal">No ads</li>
+   <li class="reveal" style="--i:1">Stays on your device and iCloud</li>
+   <li class="reveal" style="--i:2">Made for monthly bills and cards</li>
+  </ul>
  </section>
 
  <section class="cta" aria-labelledby="m3">
   <h2 class="reveal" id="m3">Bloom, for iPhone.</h2>
-  <a class="store reveal" style="--i:1" href="https://apps.apple.com/app/id6748146138">View on the App Store</a>
+  <a class="badge reveal" style="--i:1" href="https://apps.apple.com/app/id6748146138"><img src="../img/app-store-badge.svg" width="162" height="54" alt="Download on the App Store"></a>
  </section>
 </main>
 
