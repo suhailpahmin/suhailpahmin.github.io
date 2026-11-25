@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suhail Pahmin</title>
+<meta name="description" content="Calm, useful iPhone apps by Suhail Pahmin: Trevane, Bloom and Altamis.">
+<meta name="theme-color" content="#0A0F12">
+<link rel="preload" as="image" href="img/home-hero.webp">
+<script>document.documentElement.classList.replace('no-js','js')</script>
+<style>
+@font-face{font-family:AmiriQuran;src:url(img/AmiriQuran.ttf) format("truetype");font-display:swap}
+:root{--ink:#0A0F12;--pad:clamp(24px,5vw,64px);--ease:cubic-bezier(.2,.7,.2,1)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:#fff;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:4px solid #fff;outline-offset:4px;border-radius:8px}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px var(--pad);font-size:15px;transition:background .4s var(--ease),backdrop-filter .4s}
+.nav.solid{background:rgba(10,15,18,.72);-webkit-backdrop-filter:saturate(1.6) blur(18px);backdrop-filter:saturate(1.6) blur(18px)}
+.nav b{font-weight:650;font-size:17px;letter-spacing:-.2px}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;opacity:.78}
+.nav ul a:hover{opacity:1}
+
+/* hero */
+.hero{position:relative;min-height:100svh;overflow:hidden;isolation:isolate;
+ background:
+  radial-gradient(60% 50% at 18% 78%,rgba(31,140,120,.45),transparent 70%),
+  radial-gradient(55% 45% at 82% 72%,rgba(40,150,190,.40),transparent 70%),
+  radial-gradient(50% 40% at 50% 30%,rgba(255,255,255,.06),transparent 70%),
+  linear-gradient(180deg,#0A0F12 0%,#0D171B 100%)}
+.hero .word{position:absolute;left:0;right:0;top:clamp(96px,13vh,140px);margin:0;text-align:center;font-weight:800;letter-spacing:-.055em;line-height:.86;font-size:clamp(56px,12.5vw,200px);white-space:nowrap;
+ background:linear-gradient(180deg,#fff 30%,rgba(255,255,255,.55));-webkit-background-clip:text;background-clip:text;color:transparent;z-index:1}
+.hero .intro{position:absolute;left:0;right:0;top:calc(clamp(96px,13vh,140px) + clamp(56px,12.5vw,200px) * 1.02);margin:0;padding:0 24px;text-align:center;font-size:clamp(18px,1.9vw,24px);color:rgba(255,255,255,.78);z-index:3}
+.hero .phones{position:absolute;left:50%;bottom:-30%;width:min(2000px,132vw);transform:translateX(-50%);z-index:2}
+.hero .phones img{width:100%;filter:drop-shadow(0 50px 60px rgba(0,0,0,.45))}
+.hero .cue{position:absolute;left:50%;bottom:22px;z-index:4;transform:translateX(-50%);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none}
+
+/* chapters */
+.chap{position:relative;display:block;height:clamp(760px,100svh,1000px);overflow:hidden;isolation:isolate;text-decoration:none;color:#fff}
+.chap .word{position:absolute;left:0;right:0;top:clamp(72px,11vh,110px);margin:0;text-align:center;font-weight:800;letter-spacing:-.06em;line-height:.86;white-space:nowrap;font-size:clamp(84px,21vw,330px);color:rgba(255,255,255,.94);z-index:1}
+.chap .inner{position:relative;z-index:3;max-width:1240px;height:100%;margin:0 auto;padding:0 var(--pad);display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:48px}
+.chap .txt{padding-bottom:clamp(56px,10vh,110px)}
+.chap .ph{align-self:end;justify-self:center;height:min(92vh,880px);width:auto;max-width:none;margin-bottom:-12vh;filter:drop-shadow(0 50px 50px rgba(0,0,0,.35));position:relative;z-index:2}
+.chap.rev .txt{order:2}
+.chap .ic{width:64px;height:64px;border-radius:15px;margin-bottom:22px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+.chap h2{margin:0;font-size:clamp(32px,3.6vw,52px);line-height:1.05;letter-spacing:-.025em;font-weight:700;max-width:12ch}
+.chap p.sub{margin:18px 0 0;font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:rgba(255,255,255,.82);max-width:34ch}
+.chap .see{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 26px;margin-top:32px;border-radius:99px;background:#fff;font-weight:650;font-size:17px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.chap:hover .see{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(0,0,0,.45)}
+.chap .see svg{transition:transform .3s var(--ease)}
+.chap:hover .see svg{transform:translateX(4px)}
+.chip{position:absolute;z-index:4;background:rgba(255,255,255,.96);color:#101418;border-radius:99px;padding:11px 18px;font-size:15px;font-weight:650;white-space:nowrap;box-shadow:0 18px 40px -14px rgba(0,0,0,.5)}
+
+.trevane{background:radial-gradient(70% 60% at 80% 85%,#4FB3CF 0%,transparent 70%),linear-gradient(155deg,#0B5560 0%,#0F6B73 45%,#1F86A0 100%)}
+.trevane .see{color:#0B5560}
+.bloom{background:radial-gradient(70% 60% at 20% 85%,#5FB08F 0%,transparent 70%),linear-gradient(155deg,#0E4A3F 0%,#17695C 50%,#2C8A73 100%)}
+.bloom .see{color:#0E4A3F}
+.altamis{background:radial-gradient(50% 45% at 72% 70%,rgba(214,232,200,.16) 0%,transparent 70%),linear-gradient(160deg,#0B2F27 0%,#0F3D33 55%,#13493C 100%)}
+.altamis .word{color:rgba(255,255,255,.9)}
+.altamis .see{color:#0F3D33}
+.ayah{width:fit-content;font-family:AmiriQuran,serif;font-size:clamp(24px,2.3vw,32px);line-height:2;margin:0 0 4px;color:rgba(255,255,255,.72);white-space:nowrap}
+
+/* temunota */
+.soon{position:relative;padding:clamp(96px,16vh,160px) var(--pad);text-align:center;overflow:hidden;background:linear-gradient(180deg,#0A0F12,#11181C)}
+.soon .word{margin:0;font-weight:800;letter-spacing:-.02em;line-height:.9;font-size:clamp(64px,14vw,220px);color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.4)}
+.soon p{margin:24px 0 0;font-size:clamp(18px,1.6vw,22px);color:rgba(255,255,255,.78)}
+.soon .tag{display:inline-block;margin-top:18px;padding:7px 16px;border:1px solid rgba(255,255,255,.3);border-radius:99px;font-size:14px;color:rgba(255,255,255,.75)}
+
+/* footer */
+.foot{padding:80px var(--pad) 64px;background:#11181C;border-top:1px solid rgba(255,255,255,.08)}
+.foot .in{max-width:1240px;margin:0 auto}
+.foot .label{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin:0 0 10px}
+.foot .mail{font-size:clamp(26px,4vw,48px);font-weight:700;letter-spacing:-.02em;text-decoration:none}
+.foot .mail:hover{text-decoration:underline;text-underline-offset:6px}
+.foot .cols{display:flex;flex-wrap:wrap;gap:56px;margin-top:56px;font-size:16px;color:rgba(255,255,255,.75)}
+.foot h3{margin:0 0 6px;font-size:16px;color:#fff}
+.foot .cols a{display:inline-block;min-height:44px;line-height:44px;margin-right:20px}
+.foot small{display:block;margin-top:40px;color:rgba(255,255,255,.5);font-size:14px}
+
+/* motion: hidden start state only with JS and no reduced-motion preference */
+@media (prefers-reduced-motion:no-preference){
+ .js .reveal{opacity:0;transform:translate3d(0,24px,0);transition:opacity .6s ease-out,transform .6s ease-out;transition-delay:calc(var(--i,0) * 80ms)}
+ .js .reveal.in{opacity:1;transform:none}
+ .js .hero .word,.js .hero .intro,.js .hero .phones{animation:rise 1s var(--ease) both}
+ .js .hero .intro{animation-delay:.12s}
+ .js .hero .phones{animation-name:riseP;animation-delay:.2s;animation-duration:1.2s}
+ [data-speed]{will-change:transform}
+}
+@keyframes rise{from{opacity:0;transform:translate3d(0,24px,0)}to{opacity:1;transform:none}}
+@keyframes riseP{from{opacity:0;transform:translate3d(-50%,60px,0)}to{opacity:1;transform:translate3d(-50%,0,0)}}
+
+@media (max-width:760px){
+ .nav ul{display:none}
+ .hero .phones{width:170vw;bottom:-8%}
+ .chap{height:auto}
+ .chap .inner,.chap.rev .inner{grid-template-columns:1fr;align-items:start;gap:0;padding-top:calc(64px + 21vw * .6)}
+ .chap.rev .txt{order:0}
+ .chap .ph{order:2;height:auto;width:112%;max-width:none;margin:12px -6% -6px}
+ .chap .txt{padding-bottom:0;order:1}
+ .chap .word{top:64px}
+ .chip{display:none}
+ .ayah{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav" aria-label="Main">
+ <b>Suhail Pahmin</b>
+ <ul><li><a href="#trevane">Trevane</a></li><li><a href="#bloom">Bloom</a></li><li><a href="#altamis">Altamis</a></li><li><a href="#contact">Contact</a></li></ul>
+</nav>
+
+<header class="hero">
+ <h1 class="word" data-speed="0.85">Suhail Pahmin</h1>
+ <p class="intro">I build calm, useful iPhone apps from Kuala Lumpur.</p>
+ <div class="phones" data-speed="1.1">
+  <img src="img/home-hero.webp" width="2400" height="1042" alt="Altamis, Trevane and Bloom on iPhone">
+ </div>
+ <a class="cue" href="#trevane">Scroll</a>
+</header>
+
+<main>
+ <a class="chap trevane" id="trevane" href="/trevane/" aria-label="See Trevane">
+  <p class="word" aria-hidden="true" data-speed="0.92">Trevane</p>
+  <div class="inner">
+   <div class="txt">
+    <img class="ic reveal" src="img/icon-trevane.png" width="64" height="64" alt="">
+    <h2 class="reveal" style="--i:1">See that they took their medication.</h2>
+    <p class="sub reveal" style="--i:2">Did they take their medication today?</p>
+    <span class="see reveal" style="--i:3">See Trevane <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+   </div>
+   <img class="ph reveal" data-speed="1.08" src="img/home-ch-trevane.webp" width="900" height="1319" alt="Trevane Today screen with the next dose and Mark as Taken" loading="lazy">
+  </div>
+ </a>
+
+ <a class="chap bloom rev" id="bloom" href="/bloom_legal_docs/" aria-label="See Bloom">
+  <p class="word" aria-hidden="true" data-speed="0.92">Bloom</p>
+  <div class="inner">
+   <img class="ph reveal" data-speed="1.08" src="img/home-ch-bloom.webp" width="900" height="1200" alt="Bloom Home screen showing what is safe to spend" loading="lazy">
+   <div class="txt">
+    <img class="ic reveal" src="img/icon-bloom.png" width="64" height="64" alt="">
+    <h2 class="reveal" style="--i:1">Know what is safe to spend.</h2>
+    <p class="sub reveal" style="--i:2">See what is safe to spend until payday.</p>
+    <span class="see reveal" style="--i:3">See Bloom <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+   </div>
+  </div>
+ </a>
+
+ <a class="chap altamis" id="altamis" href="https://altamis.app" aria-label="See Altamis">
+  <p class="word" aria-hidden="true" data-speed="0.92">Altamis</p>
+  <div class="inner">
+   <div class="txt">
+    <img class="ic reveal" src="img/icon-altamis.png" width="64" height="64" alt="">
+    <p class="ayah reveal" lang="ar" dir="rtl" style="--i:1" aria-label="Surah Al-Mulk, verse 1">تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ</p>
+    <h2 class="reveal" style="--i:2">Read your way.</h2>
+    <p class="sub reveal" style="--i:3">Reading is free, and it stays free.</p>
+    <span class="see reveal" style="--i:4">See Altamis <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+   </div>
+   <img class="ph reveal" data-speed="1.08" src="img/home-ch-altamis.webp" width="900" height="1316" alt="Surah Al-Mulk in the Altamis mushaf" loading="lazy">
+  </div>
+ </a>
+
+ <section class="soon" aria-labelledby="temu">
+  <h2 class="word reveal" id="temu">Temunota</h2>
+  <p class="reveal" style="--i:1">Meeting notes that stay simple.</p>
+  <span class="tag reveal" style="--i:2">Coming later</span>
+ </section>
+</main>
+
+<footer class="foot" id="contact">
+ <div class="in">
+  <p class="label reveal">Say hello</p>
+  <a class="mail reveal" style="--i:1" href="mailto:hello@suhailpahmin.com">hello@suhailpahmin.com</a>
+  <div class="cols">
+   <div><h3>Trevane</h3><a href="/trevane/privacy.html">Privacy</a><a href="/trevane/support.html">Support</a></div>
+   <div><h3>Bloom</h3><a href="/bloom_legal_docs/privacy.html">Privacy</a><a href="/bloom_legal_docs/">Support</a></div>
+   <div><h3>Altamis</h3><a href="https://altamis.app">Altamis</a></div>
+  </div>
+ </div>
+</footer>
+
+<script>
+(function(){
+ var reduce = matchMedia('(prefers-reduced-motion: reduce)');
+ var nav = document.getElementById('nav');
+
+ // nav background after leaving hero
+ addEventListener('scroll', function(){ nav.classList.toggle('solid', scrollY > 40); }, {passive:true});
+
+ // smooth scroll for in-page links only
+ document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+   var t = document.querySelector(a.getAttribute('href'));
+   if(!t) return; e.preventDefault();
+   t.scrollIntoView({behavior: reduce.matches ? 'auto' : 'smooth', block:'start'});
+  });
+ });
+
+ if (reduce.matches) return;
+
+ // fade-ins, once, at 15% visible
+ var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+ }, {threshold:.15});
+ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+ // parallax: transform only, capped, desktop only
+ var layers = [].slice.call(document.querySelectorAll('[data-speed]'));
+ var wide = matchMedia('(min-width: 761px)');
+ var ticking = false, MAX = 60;
+ function frame(){
+  ticking = false;
+  var vh = innerHeight;
+  layers.forEach(function(el){
+   if(!wide.matches){ el.style.translate = ''; return; }
+   var host = el.closest('header,.chap');
+   var r = host.getBoundingClientRect();
+   if (r.bottom < -100 || r.top > vh + 100) return;
+   var speed = parseFloat(el.dataset.speed);
+   // progress: 0 when host top is at viewport top
+   var d = -r.top * (speed - 1);
+   if (host.tagName !== 'HEADER') d = (vh/2 - (r.top + r.height/2)) * (speed - 1);
+   d = Math.max(-MAX, Math.min(MAX, d));
+   el.style.translate = '0 ' + d.toFixed(1) + 'px';
+  });
+ }
+ function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(frame); } }
+ addEventListener('scroll', onScroll, {passive:true});
+ addEventListener('resize', onScroll);
+ frame();
+})();
+</script>
+</body>
+</html>
