@@ -43,10 +43,10 @@ a{color:inherit}
 
 /* chapters */
 .chap{position:relative;display:block;overflow:hidden;isolation:isolate;text-decoration:none;color:#fff;padding:0 0 clamp(160px,18vh,200px)}
-.chap .word{position:absolute;left:0;right:0;top:clamp(72px,10vh,112px);margin:0;text-align:center;font-weight:800;letter-spacing:-.06em;line-height:.86;white-space:nowrap;font-size:clamp(84px,20vw,300px);color:rgba(255,255,255,.94);z-index:1}
-.chap .inner{position:relative;z-index:3;max-width:1240px;margin:0 auto;padding:clamp(200px,26vh,250px) var(--pad) 0;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(48px,6vw,96px)}
+.chap .word{position:absolute;left:0;right:0;top:clamp(72px,10vh,112px);margin:0;text-align:center;font-weight:800;letter-spacing:-.06em;line-height:.86;white-space:nowrap;font-size:clamp(84px,16vw,240px);color:rgba(255,255,255,.94);z-index:1}
+.chap .inner{position:relative;z-index:3;max-width:1240px;margin:0 auto;padding:calc(clamp(72px,10vh,112px) + clamp(84px,16vw,240px) * .86 + 56px) var(--pad) 0;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(48px,6vw,96px)}
 .chap .txt{padding:48px 0}
-.chap .ph{justify-self:center;width:auto;height:min(82vh,800px);max-width:100%;object-fit:contain;filter:drop-shadow(0 40px 60px rgba(0,0,0,.4));position:relative;z-index:2}
+.chap .ph{justify-self:center;width:auto;height:min(76vh,720px);max-width:100%;object-fit:contain;filter:drop-shadow(0 40px 60px rgba(0,0,0,.4));position:relative;z-index:2}
 .chap.rev .txt{order:2}
 .chap .ic{width:64px;height:64px;border-radius:15px;margin-bottom:22px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
 .chap h2{margin:0;font-size:clamp(32px,3.6vw,52px);line-height:1.05;letter-spacing:-.025em;font-weight:700;max-width:12ch}
