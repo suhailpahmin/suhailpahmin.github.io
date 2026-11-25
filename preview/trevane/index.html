@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Trevane: Medication reminders for you and your family</title>
+<meta name="description" content="Gentle medication reminders for you, and a quiet way to look out for the people you love. Refill alerts before you run out, and a simple way for family to check in.">
+<link rel="icon" href="/trevane/app-icon.png">
+<style>
+  @font-face { font-family: "Fraunces"; src: url("/trevane/fonts/Fraunces.ttf"); font-weight: 100 900; font-display: swap; }
+  @font-face { font-family: "Figtree"; src: url("/trevane/fonts/Figtree.ttf"); font-weight: 300 900; font-display: swap; }
+  :root {
+    --teal: #4e8389; --teal-deep: #32565b; --teal-ink: #1f3d42;
+    --ink: #24302f; --mute: #586a6c; --cream: #fbf8f3; --blush: #fbe9e1; --sky: #e3f2f3; --line: #ebe4da;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; background: var(--cream); color: var(--ink); }
+  body { font: 18px/1.6 "Figtree", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
+  h1, h2 { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 0; letter-spacing: -0.015em; margin: 0; color: var(--teal-ink); text-wrap: balance; }
+  a { color: var(--teal-deep); }
+  .phone { display: block; width: 300px; height: auto; filter: drop-shadow(0 30px 40px rgba(50,86,91,.22)) drop-shadow(0 8px 14px rgba(50,86,91,.10)); }
+
+  /* Top bar */
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding: 28px 0; }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 19px; color: var(--teal-ink); text-decoration: none; }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; }
+  .back { font-size: 15px; font-weight: 600; text-decoration: none; color: var(--mute); }
+  .back:hover { color: var(--teal-deep); }
+
+  /* Hero: warm morning light */
+  .hero { background: radial-gradient(1100px 600px at 85% 20%, #d9eff1 0%, rgba(217,239,241,0) 60%), radial-gradient(900px 520px at 10% 90%, var(--blush) 0%, rgba(251,233,225,0) 60%), var(--cream); }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 64px; padding: 48px 0 140px; }
+  .eyebrow { display: inline-block; font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 20px; }
+  .hero h1 { font-size: clamp(44px, 5.4vw, 68px); line-height: 1.05; }
+  .hero h1 em { font-style: italic; color: var(--teal); }
+  .hero .sub { font-size: 21px; color: var(--mute); max-width: 500px; margin: 24px 0 36px; }
+  .cta { display: inline-block; background: var(--teal-deep); color: #fff; text-decoration: none; font-weight: 700; font-size: 16px; padding: 16px 30px; border-radius: 16px; }
+  .note { display: block; margin-top: 14px; font-size: 14px; color: var(--mute); }
+  .trust { display: flex; flex-wrap: wrap; gap: 10px; margin: 36px 0 0; padding: 0; list-style: none; }
+  .trust li { font-size: 14px; font-weight: 600; color: var(--teal-ink); background: rgba(255,255,255,.75); border: 1px solid var(--line); padding: 8px 14px; border-radius: 999px; }
+  .hero .phone { width: 340px; justify-self: center; }
+
+  /* Film */
+  .film { padding: 140px 0 40px; text-align: center; }
+  .film h2 { font-size: 40px; margin-bottom: 14px; }
+  .film p { color: var(--mute); margin: 0 auto 40px; max-width: 520px; }
+  .film video { width: 100%; max-width: 960px; border-radius: 28px; display: block; margin: 0 auto; box-shadow: 0 40px 80px -36px rgba(31,61,66,.45); background: var(--teal-deep); }
+
+  /* Features */
+  .feature { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 96px; padding: 140px 0 0; }
+  .feature.reverse .text { order: 2; }
+  .feature .text { max-width: 460px; }
+  .feature .kicker { font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; display: block; }
+  .feature h2 { font-size: 44px; line-height: 1.08; margin-bottom: 18px; }
+  .feature p { color: var(--mute); margin: 0; font-size: 19px; }
+  .feature .visual { justify-self: center; position: relative; padding: 40px 0; }
+  .feature .visual::before { content: ""; position: absolute; inset: 0 -40px; border-radius: 50%; background: radial-gradient(closest-side, var(--glow, #dff0f1) 0%, rgba(223,240,241,0) 100%); z-index: -1; }
+  .feature.warm .visual { --glow: #fbe4da; }
+
+  /* Promise: light and warm */
+  .promise { margin-top: 160px; padding: 120px 0; text-align: center; background: linear-gradient(180deg, var(--blush) 0%, #fdf3ee 100%); }
+  .promise h2 { font-size: 48px; line-height: 1.08; margin-bottom: 20px; }
+  .promise p { color: var(--mute); max-width: 560px; margin: 0 auto; font-size: 19px; }
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; margin: 56px auto 0; text-align: left; }
+  .pillars div { background: #fff; border-radius: 22px; padding: 28px; box-shadow: 0 20px 40px -30px rgba(31,61,66,.35); }
+  .pillars h3 { margin: 0 0 6px; font-size: 18px; color: var(--teal-ink); }
+  .pillars p { margin: 0; font-size: 16px; }
+
+  .final { text-align: center; padding: 140px 0 120px; }
+  .final h2 { font-size: 52px; line-height: 1.06; margin-bottom: 18px; }
+  .final p { color: var(--mute); font-size: 20px; max-width: 500px; margin: 0 auto 34px; }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0 44px; text-align: center; }
+  footer p { color: var(--mute); font-size: 13px; margin: 0 0 10px; }
+  footer .links a { margin: 0 10px; font-weight: 600; text-decoration: none; font-size: 14px; }
+  footer .small { max-width: 600px; margin: 0 auto 10px; line-height: 1.5; }
+
+  /* Motion */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s var(--ease), transform .6s var(--ease); transition-delay: calc(var(--i, 0) * 80ms); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { opacity: 1; transform: none; transition: none; } }
+
+  @media (max-width: 860px) {
+    .wrap { padding: 0 24px; }
+    .topbar { padding: 20px 0; }
+    .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 56px; padding: 24px 0 96px; }
+    .hero .sub { margin-left: auto; margin-right: auto; font-size: 18px; }
+    .trust { justify-content: center; }
+    .hero .phone { width: 260px; }
+    .film { padding-top: 96px; }
+    .film h2 { font-size: 30px; }
+    .feature, .feature.reverse { grid-template-columns: 1fr; gap: 40px; text-align: center; padding-top: 96px; }
+    .feature.reverse .text { order: 0; }
+    .feature .text { margin: 0 auto; }
+    .feature h2 { font-size: 32px; }
+    .feature p { font-size: 17px; }
+    .feature .visual { padding: 24px 0; }
+    .phone { width: 250px; }
+    .promise { margin-top: 112px; padding: 88px 0; }
+    .promise h2 { font-size: 34px; }
+    .pillars { grid-template-columns: 1fr; margin-top: 40px; }
+    .final { padding: 96px 0 80px; }
+    .final h2 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="topbar">
+      <a class="brand" href="#top" id="top"><img src="/trevane/app-icon.png" alt="">Trevane</a>
+      <a class="back" href="../">Back to home</a>
+    </nav>
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow reveal">Medication reminders for families</span>
+        <h1 class="reveal" style="--i:1">Did Mom take her medication <em>today?</em></h1>
+        <p class="sub reveal" style="--i:2">Gentle reminders for you, and a quiet way to look out for the people you love.</p>
+        <div class="reveal" style="--i:3">
+          <span class="cta" role="note">Coming soon to the App Store</span>
+          <span class="note">For iPhone and iPad</span>
+        </div>
+        <ul class="trust reveal" style="--i:4">
+          <li>No medication limits</li>
+          <li>No ads</li>
+          <li>Your list is never sold</li>
+        </ul>
+      </div>
+      <img class="phone reveal" style="--i:2" src="img/home-sharedcare-v1.webp" width="720" height="1487" alt="Trevane Home screen with today's doses and shared care for Mom and Dad">
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="film wrap">
+    <h2 class="reveal">See Trevane in action</h2>
+    <p class="reveal" style="--i:1">One minute with a family that looks out for each other.</p>
+    <video class="reveal" style="--i:2" controls playsinline preload="metadata" poster="/trevane/promo-poster.jpg">
+      <source src="/trevane/promo.mp4" type="video/mp4">
+    </video>
+  </section>
+
+  <section class="feature warm wrap">
+    <div class="text">
+      <span class="kicker reveal">Shared care</span>
+      <h2 class="reveal" style="--i:1">Look out for Mom and Dad, from anywhere.</h2>
+      <p class="reveal" style="--i:2">They share a code with you. You can see whether today's doses were taken and when something is running low, and send a gentle nudge. You never see their exact quantities, and they can stop sharing at any time.</p>
+    </div>
+    <div class="visual reveal" style="--i:1"><img class="phone" src="img/carer-list-v1.webp" width="720" height="1487" alt="Caregiver screen showing Mom and Dad and their doses for today" loading="lazy"></div>
+  </section>
+
+  <section class="feature reverse wrap">
+    <div class="text">
+      <span class="kicker reveal">Reminders</span>
+      <h2 class="reveal" style="--i:1">Take it, or snooze it, right from the reminder.</h2>
+      <p class="reveal" style="--i:2">Mark a dose as taken or snooze it without opening the app. Trevane remembers, so you don't have to.</p>
+    </div>
+    <div class="visual reveal" style="--i:1"><img class="phone" src="img/reminder-actions-v1.webp" width="720" height="1487" alt="A Trevane reminder with Taken and Snooze buttons" loading="lazy"></div>
+  </section>
+
+  <section class="feature wrap">
+    <div class="text">
+      <span class="kicker reveal">Refills</span>
+      <h2 class="reveal" style="--i:1">Refill before the bottle is empty.</h2>
+      <p class="reveal" style="--i:2">Trevane counts what you have left and lets you know while there's still time to get more.</p>
+    </div>
+    <div class="visual reveal" style="--i:1"><img class="phone" src="img/medications-list-v1.webp" width="720" height="1487" alt="Medication list with a running low note" loading="lazy"></div>
+  </section>
+
+  <section class="feature reverse warm wrap">
+    <div class="text">
+      <span class="kicker reveal">Adding medications</span>
+      <h2 class="reveal" style="--i:1">Add a medication in seconds.</h2>
+      <p class="reveal" style="--i:2">Start typing and pick the right name from the list. No guessing at spellings.</p>
+    </div>
+    <div class="visual reveal" style="--i:1"><img class="phone" src="img/add-search-v1.webp" width="720" height="1487" alt="Add Medication screen with name suggestions" loading="lazy"></div>
+  </section>
+
+  <section class="feature wrap">
+    <div class="text">
+      <span class="kicker reveal">Appointments</span>
+      <h2 class="reveal" style="--i:1">Ready for every appointment.</h2>
+      <p class="reveal" style="--i:2">Share your medication list in one tap, so your doctor or pharmacist sees exactly what you take.</p>
+    </div>
+    <div class="visual reveal" style="--i:1"><img class="phone" src="img/share-sheet-v1.webp" width="720" height="1487" alt="Sharing the medication list" loading="lazy"></div>
+  </section>
+
+  <section class="promise">
+    <div class="wrap">
+      <h2 class="reveal">Made for families, not advertisers.</h2>
+      <p class="reveal" style="--i:1">Your health is personal. Trevane keeps it that way.</p>
+      <div class="pillars">
+        <div class="reveal" style="--i:1"><h3>No ads</h3><p>No ads and no advertising trackers, ever.</p></div>
+        <div class="reveal" style="--i:2"><h3>Never sold</h3><p>Your medication list is never sold or used for advertising.</p></div>
+        <div class="reveal" style="--i:3"><h3>No medication limits</h3><p>Add as many medications as you need.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final wrap">
+    <h2 class="reveal">Peace of mind, every day.</h2>
+    <p class="reveal" style="--i:1">Trevane keeps track of every dose, for you and for the people you look after.</p>
+    <span class="cta reveal" style="--i:2" role="note">Coming soon to the App Store</span>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="links"><a href="../">Suhail Pahmin</a><a href="/trevane/privacy.html">Privacy policy</a><a href="/trevane/support.html">Support</a></p>
+    <p class="small">Trevane is a reminder and record-keeping tool. It does not provide medical advice, does not check drug interactions, and is not a substitute for advice from your doctor or pharmacist. Never start, stop or change a medication without speaking to your prescriber first.</p>
+    <p class="small">Film music: "Ambiment" by Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 License. http://creativecommons.org/licenses/by/4.0/</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const els = document.querySelectorAll('.reveal');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  els.forEach(e => io.observe(e));
+})();
+</script>
+</body>
+</html>
