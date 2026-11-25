@@ -29,7 +29,7 @@ a{color:inherit}
 .nav ul a:hover{opacity:1}
 
 /* hero */
-.hero{position:relative;padding:0 0 clamp(24px,3vh,32px);overflow:hidden;isolation:isolate;
+.hero{position:relative;padding:0 0 clamp(72px,10vh,112px);overflow:hidden;isolation:isolate;
  background:
   radial-gradient(60% 50% at 18% 78%,rgba(31,140,120,.45),transparent 70%),
   radial-gradient(55% 45% at 82% 72%,rgba(40,150,190,.40),transparent 70%),
@@ -38,7 +38,7 @@ a{color:inherit}
 .hero .word{position:relative;margin:clamp(100px,13vh,128px) 0 0;text-align:center;font-weight:800;letter-spacing:-.055em;line-height:.86;font-size:clamp(48px,7vw,112px);white-space:nowrap;
  background:linear-gradient(180deg,#fff 30%,rgba(255,255,255,.55));-webkit-background-clip:text;background-clip:text;color:transparent;z-index:1}
 .hero .intro{text-wrap:balance;position:relative;margin:20px auto 0;max-width:720px;padding:0 24px;text-align:center;font-size:clamp(19px,2vw,26px);color:rgba(255,255,255,.78);z-index:3}
-.hero .phones{position:relative;width:min(900px,62vw,calc(100% - 48px),max(460px,calc((100vh - 500px) * 1.55)));margin:clamp(32px,4.5vh,48px) auto 0;z-index:2}
+.hero .phones{position:relative;width:min(1040px,72vw,calc(100% - 48px),max(600px,calc((100vh - 330px) * 1.55)));margin:clamp(32px,4.5vh,48px) auto 0;z-index:2}
 .hero .phones img{display:block}
 .hero .phones img{width:100%;filter:drop-shadow(0 40px 60px rgba(0,0,0,.45))}
 .hero .cue{position:absolute;left:50%;bottom:22px;z-index:4;transform:translateX(-50%);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none}
@@ -119,6 +119,13 @@ a{color:inherit}
 #trevane .word{top:clamp(40px,5vh,56px)}
 #trevane .inner{padding-top:calc(clamp(40px,5vh,56px) + clamp(84px,16vw,240px) * .86 + 56px)}
 @media (max-width:760px){#trevane .word{top:56px}#trevane .inner{padding-top:calc(56px + clamp(64px,20vw,96px) * .86 + 48px)}}
+.about{position:relative;padding:clamp(96px,14vh,144px) var(--pad);text-align:center;background:#161F24;border-top:1px solid rgba(255,255,255,.12)}
+.about .label{margin:0;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.about h2{margin:18px auto 0;max-width:18ch;font-weight:800;letter-spacing:-.03em;line-height:1.02;font-size:clamp(40px,5.6vw,80px);text-wrap:balance}
+.about p:not(.label){margin:24px auto 0;max-width:40em;font-size:clamp(18px,1.6vw,22px);line-height:1.5;color:rgba(255,255,255,.8);text-wrap:pretty}
+.about .stack{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;list-style:none;margin:32px 0 0;padding:0}
+.about .stack li{padding:7px 16px;border:1px solid rgba(255,255,255,.28);border-radius:99px;font-size:15px;color:rgba(255,255,255,.82)}
+@media (max-width:760px){.about{padding:80px 24px}}
 </style>
 </head>
 <body>
@@ -180,6 +187,12 @@ a{color:inherit}
   <h2 class="word reveal" id="temu">Temunota</h2>
   <p class="reveal" style="--i:1">Meeting notes that stay simple.</p>
   <span class="tag reveal" style="--i:2">Coming later</span>
+ </section>
+ <section class="about" aria-labelledby="about-h">
+  <p class="label reveal">About</p>
+  <h2 class="reveal" id="about-h" style="--i:1">Eight years building mobile apps.</h2>
+  <p class="reveal" style="--i:2">Fintech, a multinational, a health startup and a government&#8209;linked company.</p>
+  <ul class="stack reveal" style="--i:3" aria-label="Main tools"><li>Flutter</li><li>React Native</li><li>Swift</li><li>Kotlin</li></ul>
  </section>
 </main>
 
