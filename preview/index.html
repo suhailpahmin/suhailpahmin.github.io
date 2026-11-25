@@ -120,6 +120,11 @@ a{color:inherit}
 #trevane .word{top:clamp(40px,5vh,56px)}
 #trevane .inner{padding-top:calc(clamp(40px,5vh,56px) + clamp(84px,16vw,240px) * .86 + 56px)}
 @media (max-width:760px){#trevane .word{top:56px}#trevane .inner{padding-top:calc(56px + clamp(64px,20vw,96px) * .86 + 48px)}}
+.about{padding:clamp(96px,14vh,144px) var(--pad);text-align:center;background:#11181C}
+.about .label{margin:0;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.about h2{margin:18px auto 0;max-width:18ch;font-weight:800;letter-spacing:-.03em;line-height:1.02;font-size:clamp(40px,5.6vw,80px);text-wrap:balance}
+.about p:not(.label){margin:24px auto 0;max-width:36em;font-size:clamp(18px,1.6vw,22px);line-height:1.5;color:rgba(255,255,255,.8);text-wrap:pretty}
+@media (max-width:760px){.about{padding:80px 24px}}
 </style>
 </head>
 <body>
@@ -130,7 +135,7 @@ a{color:inherit}
 
 <header class="hero">
  <h1 class="word" data-speed="0.85">Suhail Pahmin</h1>
- <p class="intro">Mobile Engineer. Kuala Lumpur.</p>
+ <p class="intro">Mobile Engineer. 8 years. Kuala Lumpur.</p>
  <div class="phones" data-speed="1.1">
   <picture><source media="(max-width:760px)" srcset="img/home-hero-A-m-v1.webp" width="1000" height="768"><img src="img/home-hero-A-d-v1.webp" width="1600" height="1034" alt="Altamis, Trevane and Bloom on iPhone"></picture>
  </div>
@@ -181,6 +186,11 @@ a{color:inherit}
   <h2 class="word reveal" id="temu">Temunota</h2>
   <p class="reveal" style="--i:1">Meeting notes that stay simple.</p>
   <span class="tag reveal" style="--i:2">Coming later</span>
+ </section>
+ <section class="about" aria-labelledby="about-h">
+  <p class="label reveal">About</p>
+  <h2 class="reveal" id="about-h" style="--i:1">Eight years building mobile apps.</h2>
+  <p class="reveal" style="--i:2">I have built apps for fintech companies, a multinational, startups and a government&#8209;linked company. Now I also build my own: Trevane, Bloom and Altamis.</p>
  </section>
 </main>
 
