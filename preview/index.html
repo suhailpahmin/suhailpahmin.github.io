@@ -28,25 +28,25 @@ a{color:inherit}
 .nav ul a:hover{opacity:1}
 
 /* hero */
-.hero{position:relative;min-height:100svh;overflow:hidden;isolation:isolate;
+.hero{position:relative;padding:0 0 clamp(96px,12vh,144px);overflow:hidden;isolation:isolate;
  background:
   radial-gradient(60% 50% at 18% 78%,rgba(31,140,120,.45),transparent 70%),
   radial-gradient(55% 45% at 82% 72%,rgba(40,150,190,.40),transparent 70%),
   radial-gradient(50% 40% at 50% 30%,rgba(255,255,255,.06),transparent 70%),
   linear-gradient(180deg,#0A0F12 0%,#0D171B 100%)}
-.hero .word{position:absolute;left:0;right:0;top:clamp(96px,13vh,140px);margin:0;text-align:center;font-weight:800;letter-spacing:-.055em;line-height:.86;font-size:clamp(56px,12.5vw,200px);white-space:nowrap;
+.hero .word{position:relative;padding-top:clamp(120px,16vh,168px);margin:0;text-align:center;font-weight:800;letter-spacing:-.055em;line-height:.86;font-size:clamp(56px,12.5vw,200px);white-space:nowrap;
  background:linear-gradient(180deg,#fff 30%,rgba(255,255,255,.55));-webkit-background-clip:text;background-clip:text;color:transparent;z-index:1}
-.hero .intro{position:absolute;left:0;right:0;top:calc(clamp(96px,13vh,140px) + clamp(56px,12.5vw,200px) * 1.02);margin:0;padding:0 24px;text-align:center;font-size:clamp(18px,1.9vw,24px);color:rgba(255,255,255,.78);z-index:3}
-.hero .phones{position:absolute;left:50%;bottom:-28%;width:min(860px,60vw);transform:translateX(-50%);z-index:2}
-.hero .phones img{width:100%;filter:drop-shadow(0 50px 60px rgba(0,0,0,.45))}
+.hero .intro{position:relative;margin:20px 0 0;padding:0 24px;text-align:center;font-size:clamp(18px,1.9vw,24px);color:rgba(255,255,255,.78);z-index:3}
+.hero .phones{position:relative;width:min(820px,calc(100% - 48px));margin:clamp(40px,6vh,72px) auto 0;z-index:2}
+.hero .phones img{width:100%;filter:drop-shadow(0 40px 40px rgba(0,0,0,.25))}
 .hero .cue{position:absolute;left:50%;bottom:22px;z-index:4;transform:translateX(-50%);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none}
 
 /* chapters */
-.chap{position:relative;display:block;height:clamp(760px,100svh,1000px);overflow:hidden;isolation:isolate;text-decoration:none;color:#fff}
-.chap .word{position:absolute;left:0;right:0;top:clamp(72px,11vh,110px);margin:0;text-align:center;font-weight:800;letter-spacing:-.06em;line-height:.86;white-space:nowrap;font-size:clamp(84px,21vw,330px);color:rgba(255,255,255,.94);z-index:1}
-.chap .inner{position:relative;z-index:3;max-width:1240px;height:100%;margin:0 auto;padding:0 var(--pad);display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:48px}
-.chap .txt{padding-bottom:clamp(56px,10vh,110px)}
-.chap .ph{align-self:end;justify-self:center;height:min(92vh,880px);width:auto;max-width:none;margin-bottom:-12vh;filter:drop-shadow(0 50px 50px rgba(0,0,0,.35));position:relative;z-index:2}
+.chap{position:relative;display:block;overflow:hidden;isolation:isolate;text-decoration:none;color:#fff;padding:0 0 clamp(120px,14vh,160px)}
+.chap .word{position:absolute;left:0;right:0;top:clamp(72px,10vh,112px);margin:0;text-align:center;font-weight:800;letter-spacing:-.06em;line-height:.86;white-space:nowrap;font-size:clamp(84px,20vw,300px);color:rgba(255,255,255,.94);z-index:1}
+.chap .inner{position:relative;z-index:3;max-width:1240px;margin:0 auto;padding:clamp(200px,26vh,250px) var(--pad) 0;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(48px,6vw,96px)}
+.chap .txt{padding:48px 0}
+.chap .ph{justify-self:center;width:min(520px,100%);height:auto;filter:drop-shadow(0 40px 40px rgba(0,0,0,.28));position:relative;z-index:2}
 .chap.rev .txt{order:2}
 .chap .ic{width:64px;height:64px;border-radius:15px;margin-bottom:22px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
 .chap h2{margin:0;font-size:clamp(32px,3.6vw,52px);line-height:1.05;letter-spacing:-.025em;font-weight:700;max-width:12ch}
@@ -73,13 +73,13 @@ a{color:inherit}
 .soon .tag{display:inline-block;margin-top:18px;padding:7px 16px;border:1px solid rgba(255,255,255,.3);border-radius:99px;font-size:14px;color:rgba(255,255,255,.75)}
 
 /* footer */
-.foot{padding:80px var(--pad) 64px;background:#11181C;border-top:1px solid rgba(255,255,255,.08)}
+.foot{padding:56px var(--pad) 40px;background:#11181C;border-top:1px solid rgba(255,255,255,.08)}
 .foot .in{max-width:1240px;margin:0 auto}
-.foot .label{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin:0 0 10px}
-.foot .mail{font-size:clamp(26px,4vw,48px);font-weight:700;letter-spacing:-.02em;text-decoration:none}
+.foot .label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin:0 0 10px}
+.foot .mail{font-size:clamp(20px,2.2vw,28px);font-weight:700;letter-spacing:-.02em;text-decoration:none}
 .foot .mail:hover{text-decoration:underline;text-underline-offset:6px}
-.foot .cols{display:flex;flex-wrap:wrap;gap:56px;margin-top:56px;font-size:16px;color:rgba(255,255,255,.75)}
-.foot h3{margin:0 0 6px;font-size:16px;color:#fff}
+.foot .cols{display:flex;flex-wrap:wrap;gap:40px;margin-top:32px;font-size:15px;color:rgba(255,255,255,.75)}
+.foot h3{margin:0 0 2px;font-size:15px;color:#fff}
 .foot .cols a{display:inline-block;min-height:44px;line-height:44px;margin-right:20px}
 .foot small{display:block;margin-top:40px;color:rgba(255,255,255,.5);font-size:14px}
 
@@ -93,20 +93,23 @@ a{color:inherit}
  [data-speed]{will-change:transform}
 }
 @keyframes rise{from{opacity:0;transform:translate3d(0,24px,0)}to{opacity:1;transform:none}}
-@keyframes riseP{from{opacity:0;transform:translate3d(-50%,60px,0)}to{opacity:1;transform:translate3d(-50%,0,0)}}
+@keyframes riseP{from{opacity:0;transform:translate3d(0,60px,0)}to{opacity:1;transform:none}}
 
 @media (max-width:760px){
  .nav ul{display:none}
- .hero{min-height:640px}
- .hero .phones{width:96vw;top:250px;bottom:auto}
- .chap{height:auto}
- .chap .inner,.chap.rev .inner{grid-template-columns:1fr;align-items:start;gap:0;padding-top:184px}
+ .hero{padding-bottom:80px}
+ .hero .word{padding-top:112px;font-size:clamp(48px,14vw,80px)}
+ .hero .intro{margin-top:16px;font-size:18px}
+ .hero .phones{width:calc(100% - 32px);margin-top:40px}
+ .chap{padding-bottom:80px}
+ .chap .word{top:72px;font-size:clamp(64px,20vw,96px)}
+ .chap .inner,.chap.rev .inner{grid-template-columns:1fr;gap:40px;padding:calc(72px + clamp(64px,20vw,96px) * .86 + 40px) 24px 0}
  .chap.rev .txt{order:0}
- .chap .ph{order:2;height:auto;width:112%;max-width:none;margin:12px -6% -6px}
- .chap .txt{padding-bottom:0;order:1}
- .chap .word{top:64px}
+ .chap .txt{padding:0}
+ .chap .ph{order:2;width:84%;max-width:360px}
  .chip{display:none}
  .ayah{white-space:normal}
+ .soon{padding:96px 24px}
 }
 </style>
 </head>
@@ -120,9 +123,8 @@ a{color:inherit}
  <h1 class="word" data-speed="0.85">Suhail Pahmin</h1>
  <p class="intro">I build calm, useful iPhone apps from Kuala Lumpur.</p>
  <div class="phones" data-speed="1.1">
-  <img src="img/home-hero.webp" width="1438" height="1169" alt="Altamis, Trevane and Bloom on iPhone">
+  <img src="img/home-hero.webp" width="1378" height="1136" alt="Altamis, Trevane and Bloom on iPhone">
  </div>
- <a class="cue" href="#trevane">Scroll</a>
 </header>
 
 <main>
@@ -135,14 +137,14 @@ a{color:inherit}
     <p class="sub reveal" style="--i:2">Did they take their medication today?</p>
     <span class="see reveal" style="--i:3">See Trevane <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
    </div>
-   <img class="ph reveal" data-speed="1.08" src="img/home-ch-trevane.webp" width="900" height="1319" alt="Trevane Today screen with the next dose and Mark as Taken" loading="lazy">
+   <img class="ph reveal" data-speed="1.08" src="img/home-ch-trevane.webp" width="900" height="1002" alt="Trevane Today screen with the next dose and Mark as Taken" loading="lazy">
   </div>
  </a>
 
  <a class="chap bloom rev" id="bloom" href="/bloom_legal_docs/" aria-label="See Bloom">
   <p class="word" aria-hidden="true" data-speed="0.92">Bloom</p>
   <div class="inner">
-   <img class="ph reveal" data-speed="1.08" src="img/home-ch-bloom.webp" width="900" height="1200" alt="Bloom Home screen showing what is safe to spend" loading="lazy">
+   <img class="ph reveal" data-speed="1.08" src="img/home-ch-bloom.webp" width="900" height="1002" alt="Bloom Home screen showing what is safe to spend" loading="lazy">
    <div class="txt">
     <img class="ic reveal" src="img/icon-bloom.png" width="64" height="64" alt="">
     <h2 class="reveal" style="--i:1">Know what is safe to spend.</h2>
@@ -162,7 +164,7 @@ a{color:inherit}
     <p class="sub reveal" style="--i:3">Reading is free, and it stays free.</p>
     <span class="see reveal" style="--i:4">See Altamis <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
    </div>
-   <img class="ph reveal" data-speed="1.08" src="img/home-ch-altamis.webp" width="900" height="1316" alt="Surah Al-Mulk in the Altamis mushaf" loading="lazy">
+   <img class="ph reveal" data-speed="1.08" src="img/home-ch-altamis.webp" width="900" height="1002" alt="Surah Al-Mulk in the Altamis mushaf" loading="lazy">
   </div>
  </a>
 
