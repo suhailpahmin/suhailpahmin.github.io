@@ -46,6 +46,8 @@ a{color:inherit}
 .chap .word{position:absolute;left:0;right:0;top:clamp(72px,10vh,112px);margin:0;text-align:center;font-weight:800;letter-spacing:-.06em;line-height:.86;white-space:nowrap;font-size:clamp(84px,16vw,240px);color:rgba(255,255,255,.94);z-index:1}
 .chap .inner{position:relative;z-index:3;max-width:1240px;margin:0 auto;padding:calc(clamp(72px,10vh,112px) + clamp(84px,16vw,240px) * .86 + 56px) var(--pad) 0;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(48px,6vw,96px)}
 .chap .txt{padding:48px 0}
+.chap .phw{display:flex;justify-content:center;min-width:0}
+.chap.rev .phw{order:1}
 .chap .ph{justify-self:center;width:auto;height:min(76vh,720px);max-width:100%;object-fit:contain;filter:drop-shadow(0 40px 60px rgba(0,0,0,.4));position:relative;z-index:2}
 .chap.rev .txt{order:2}
 .chap .ic{width:64px;height:64px;border-radius:15px;margin-bottom:22px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
@@ -106,7 +108,8 @@ a{color:inherit}
  .chap .inner,.chap.rev .inner{grid-template-columns:1fr;gap:40px;padding:calc(72px + clamp(64px,20vw,96px) * .86 + 40px) 24px 0}
  .chap.rev .txt{order:0}
  .chap .txt{padding:0}
- .chap .ph{order:2;height:auto;width:68%;max-width:320px}
+ .chap .phw{order:2}
+ .chap .ph{order:2;height:auto;width:78%;max-width:340px}
  .chip{display:none}
  .ayah{white-space:normal}
  .soon{padding:96px 24px}
@@ -137,7 +140,7 @@ a{color:inherit}
     <p class="sub reveal" style="--i:2">Did they take their medication today?</p>
     <span class="see reveal" style="--i:3">See Trevane <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
    </div>
-   <img class="ph reveal" data-speed="1.08" src="img/home-ch-trevane-v4.webp" width="510" height="982" alt="Trevane Today screen with the next dose and Mark as Taken" loading="lazy">
+   <picture class="phw"><source media="(max-width:760px)" srcset="img/home-ch-trevane-flat-v1.webp" width="464" height="950"><img class="ph reveal" data-speed="1.08" src="img/home-ch-trevane-v4.webp" width="510" height="982" alt="Trevane Today screen with the next dose and Mark as Taken" loading="lazy"></picture>
   </div>
  </a>
 
@@ -164,7 +167,7 @@ a{color:inherit}
     <p class="sub reveal" style="--i:3">Reading is free, and it stays free.</p>
     <span class="see reveal" style="--i:4">See Altamis <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
    </div>
-   <img class="ph reveal" data-speed="1.08" src="img/home-ch-altamis-v4.webp" width="510" height="982" alt="Surah Al-Mulk in the Altamis mushaf" loading="lazy">
+   <picture class="phw"><source media="(max-width:760px)" srcset="img/home-ch-altamis-flat-v1.webp" width="464" height="950"><img class="ph reveal" data-speed="1.08" src="img/home-ch-altamis-v4.webp" width="510" height="982" alt="Surah Al-Mulk in the Altamis mushaf" loading="lazy"></picture>
   </div>
  </a>
 
